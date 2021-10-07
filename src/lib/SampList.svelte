@@ -2,21 +2,28 @@
 	export const prerender = true
 	
 	import Samp from '$lib/Samp.svelte'
-</script>
-
-<script>
-	let base = [
-		{
-			'name': 'kick_house',
-			'delay': 200
-		},
+	import {loadSound, isLoaded} from '$lib/LoadedSounds'
+	
+	export const samps = [
 		{
 			'name': 'crash_long_echo',
 			'delay': 0
 		}
 	]
+	
+	function loadAll() {
+		samps.forEach(function(samp) {
+			if (!isLoaded(samp.name)) {
+				loadSound(samp.name, function() {})
+			}
+		})
+	}
+	
+	loadAll()
+</script>
 
-	export let samps = base
+<script>
+	
 </script>
 
 <div class="SampList">

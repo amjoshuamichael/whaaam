@@ -6,6 +6,7 @@
 <script>
 	import SoundSelect from '$lib/SoundSelect.svelte'
 	import SampList from '$lib/SampList.svelte'
+	import Player from '$lib/Player.svelte'
 </script>
 
 <svelte:head>
@@ -15,6 +16,7 @@
 <section>
 	<SoundSelect />
 	<SampList />
+	<Player />
 </section>
 
 <style>

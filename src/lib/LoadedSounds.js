@@ -7,9 +7,13 @@ export const isLoaded = (name) => {
 }
 
 export const getPlayable = (name) => {
-	var sound = getContext().createBufferSource();
-	sound.buffer = loadedSounds[name];
-	return sound;
+	var sound = getContext().createBufferSource()
+	sound.buffer = loadedSounds[name]
+	return sound
+}
+
+export const getBuffer = (name) => {
+	return loadedSounds[name]
 }
 
 export const loadSound = (name, callback) => {
