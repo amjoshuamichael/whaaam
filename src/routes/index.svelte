@@ -2,9 +2,10 @@
 	export const prerender = true;
 </script>
 
+
 <script>
-	import Counter from '$lib/Counter.svelte';
 	import SoundSelect from '$lib/SoundSelect.svelte'
+	import SampList from '$lib/SampList.svelte'
 </script>
 
 <svelte:head>
@@ -13,8 +14,7 @@
 
 <section>
 	<SoundSelect />
-
-	<Counter />
+	<SampList />
 </section>
 
 <style>
