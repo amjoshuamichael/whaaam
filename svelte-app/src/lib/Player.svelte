@@ -3,10 +3,12 @@
 </script>
 
 <script>
-	import {samps} from '$lib/SampList.svelte'
-	import {getBuffer} from '$lib/LoadedSounds'
-	import getContext from '$lib/AudioContext'
-
+	import {samps} from './SampList.svelte'
+	import {getBuffer} from './LoadedSounds'
+	import getContext from './AudioContext'
+	
+	import {delay} from '../../target/wasm-pack/wasm-game-of-life/index.js'
+	
 	const seconds = 5
 	const length = getContext().sampleRate * seconds
 	const channels = 2
@@ -16,17 +18,11 @@
 		samps.forEach(function(samp) {
 			let newBuffer = getContext().createBuffer(2, length, getContext().sampleRate);
 			for (let c = 0; c < channels; c++) {
-				let newBufferData = newBuffer.getChannelData(c)
-				let sampBuffer = getBuffer(samp.name).getChannelData(c)
-				let sampBufferLength = sampBuffer.length - 1
+				let newBufferData = new Float32Array(length)
+				let sampBufferData = getBuffer(samp.name).getChannelData(c)
 				
-				for (let s = 0; s < length; s++) {
-					if (s < samp.delay || s > sampBufferLength) {
-						newBufferData[s] = 0
-					} else {
-						newBufferData[s] = sampBuffer[s - samp.delay]
-					}
-				}
+				delay(sampBufferData, newBufferData)
+				newBuffer.copyToChannel(newBufferData, c)
 			}
 			
 			let source = getContext().createBufferSource()

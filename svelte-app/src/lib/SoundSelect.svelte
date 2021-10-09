@@ -1,7 +1,7 @@
 <script context="module">
 	export const prerender = true
-	import {loadSound, getPlayable, isLoaded} from '$lib/LoadedSounds'
-	import getContext from '$lib/AudioContext'
+	import {loadSound, getPlayable, isLoaded} from './LoadedSounds'
+	import getContext from './AudioContext'
 </script>
 
 <script>

@@ -1,5 +1,4 @@
+node_modules/
+public/
+target/
 .DS_Store
-node_modules
-/build
-/.svelte-kit
-/package

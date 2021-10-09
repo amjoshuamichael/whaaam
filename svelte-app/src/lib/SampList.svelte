@@ -1,13 +1,13 @@
 <script context="module">
 	export const prerender = true
 	
-	import Samp from '$lib/Samp.svelte'
-	import {loadSound, isLoaded} from '$lib/LoadedSounds'
+	import Samp from './Samp.svelte'
+	import {loadSound, isLoaded} from './LoadedSounds'
 	
 	export const samps = [
 		{
 			'name': 'crash_long_echo',
-			'delay': 0
+			'delay': 30000
 		}
 	]
 	

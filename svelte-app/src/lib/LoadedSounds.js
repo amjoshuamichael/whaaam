@@ -1,4 +1,4 @@
-import getContext from '$lib/AudioContext.js'
+import getContext from './AudioContext'
 
 let loadedSounds = {};
 
@@ -18,7 +18,7 @@ export const getBuffer = (name) => {
 
 export const loadSound = (name, callback) => {
 	var request = new XMLHttpRequest();
-	request.open('GET', `samples/${name}.wav`, true);
+	request.open('GET', `build/samples/${name}.wav`, true);
 	request.responseType = 'arraybuffer';
 	
 	request.onload = function() {
