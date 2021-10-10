@@ -3,9 +3,7 @@ import copy from 'rollup-plugin-copy'
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
-import {
-  terser
-} from 'rollup-plugin-terser';
+import {terser} from 'rollup-plugin-terser';
 import rust from "@wasm-tool/rollup-plugin-rust";
 
 const production = !process.env.ROLLUP_WATCH;
@@ -41,8 +39,7 @@ export default [{
       // consult the documentation for details:
       // https://github.com/rollup/plugins/tree/master/packages/commonjs
       resolve({
-        browser: true,
-        dedupe: ['svelte']
+        browser: true
       }),
       commonjs(),
 			rust({

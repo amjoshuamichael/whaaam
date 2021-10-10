@@ -23,7 +23,7 @@ export const loadSound = (name, callback) => {
 	
 	request.onload = function() {
 		getContext().decodeAudioData(request.response, function(buffer) {
-			loadedSounds[name] = buffer			
+			loadedSounds[name] = buffer	
 			callback()
 		}, () => {
 			console.log('ERROR!') 
