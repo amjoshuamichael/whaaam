@@ -3,13 +3,13 @@
 </script>
 
 <script>
-	import {samps} from './SampList.svelte'
+	import {samps} from './SampList'
 	import getContext from './AudioContext'
 	import GenBuffer from './Generate'
 
 	const Play = () => {
 		console.log('loading Play!')
-		samps.forEach(function(samp) {
+		$samps.forEach(function(samp) {
 			let newBuffer = GenBuffer(samp)
 			
 			let source = getContext().createBufferSource()

@@ -1,6 +1,7 @@
 mod utils;
 
 use wasm_bindgen::prelude::*;
+use std::cmp;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
@@ -19,20 +20,23 @@ pub fn take_number_slice_by_shared_ref(x: &mut [f64]) {
 }
 
 #[wasm_bindgen]
-pub fn copy(ain: &mut [f32], aout: &mut [f32], delay: usize) {
-    let end_point: usize = ain.len() - 1 + delay;
+pub fn copy(ain: &mut [f32], aout: &mut [f32], delay: isize) {
+    let end_point: usize = cmp::max(0, (ain.len() - 1) as isize + delay) as usize;
+    let start_point: usize = cmp::max(0, delay) as usize;
     let out_length: usize = aout.len();
 
-    let mut s: usize = 0;
+    let mut sample: usize = 0;
+    let mut copy_point: usize = - cmp::min(0, delay) as usize;
 
-    while s < out_length {
-        if s < delay || s > end_point {
-            aout[s] = 0.;
+    while sample < out_length {
+        if sample < start_point || sample > end_point {
+            aout[sample] = 0.;
         } else {
-            aout[s] = ain[s - delay];
+            aout[sample] = ain[copy_point];
+            copy_point += 1;
         }
 
-        s += 1;
+        sample += 1;
     }
 }
 

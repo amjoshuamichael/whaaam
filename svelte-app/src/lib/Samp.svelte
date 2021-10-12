@@ -85,7 +85,7 @@
 <div class="Samp" style="left: {data.effects[0].params.delay / spacing}px; top: {Math.random() * 100}px" bind:this={el}>
 	<svg style="width: {barCount * barWidth}; height: {height};">
 		{#each visual as bar, i}
-			<rect width="{barWidth * 2}" height="{bar * height / 2}" x="{i * barWidth}" y ="{height / 2 - bar * height / 4}"></rect>
+			<rect fill="#000000" width="{barWidth * 2}" height="{bar * height / 2}" x="{i * barWidth}" y ="{height / 2 - bar * height / 4}"></rect>
 		{/each}
 	</svg>
 </div>
