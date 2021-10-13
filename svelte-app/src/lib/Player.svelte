@@ -9,14 +9,12 @@
 
 <script>
 	const Play = () => {
-		$samps.forEach(function(samp) {
-			let newBuffer = GenBuffer(samp)
+		let newBuffer = GenBuffer($samps)
 			
-			let source = getContext().createBufferSource()
-			source.buffer = newBuffer
-			source.connect(getContext().destination)
-			source.start()
-		})
+		let source = getContext().createBufferSource()
+		source.buffer = newBuffer
+		source.connect(getContext().destination)
+		source.start()
 		
 		setStartTime()
 	}

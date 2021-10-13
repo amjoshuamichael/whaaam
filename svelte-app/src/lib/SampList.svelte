@@ -15,6 +15,8 @@
 	areAllSoundsLoaded.subscribe(value => {
 		_areAllSoundsLoaded = value
 	})
+	
+	let sampList
 </script>
 
 <style>
@@ -27,7 +29,7 @@
 </style>
 
 {#if _areAllSoundsLoaded === true}
-	<div class="SampList">
+	<div class="SampList" bind:this={sampList}>
 		{#each $samps as samp}
 			<Samp data={samp}></Samp>
 		{/each}

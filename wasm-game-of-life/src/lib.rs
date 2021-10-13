@@ -63,3 +63,15 @@ pub fn bitcrush(ain: &mut [f32], aout: &mut [f32], amount: usize) {
         s += 1;
     }
 }
+
+#[wasm_bindgen]
+pub fn add(afrom: &mut [f32], ato: &mut [f32]) {
+    let out_length: usize = ato.len();
+
+    let mut s: usize = 0;
+    
+    while s < out_length {
+        ato[s] += afrom[s];
+        s += 1;
+    }
+}
