@@ -3,7 +3,7 @@ import {writable, get} from 'svelte/store'
 
 export const samps = writable([
 	{
-		'name': 'crash_long_echo',
+		'name': 'kick_house',
 		'enabled': true,
 		'buffer': null,
 		'effects': [

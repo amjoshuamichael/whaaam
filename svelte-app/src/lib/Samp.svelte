@@ -3,10 +3,15 @@
 	
 	import {getBuffer} from './LoadedSounds'
 	import {onMount} from 'svelte'
-	import {length} from './Generate'
+	import {length, seconds} from './Generate'
+	import {playTime} from './Time'
+	
+	const buffer = getBuffer(data.name).getChannelData(0)
 	
 	let el
 	let canvas
+	let ctx
+	let sampling
 	
 	function dragAndDrop() {
 		var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -43,14 +48,14 @@
 		}
 	}
 	
+	
+	
 	onMount(function() {
 		dragAndDrop()
-		
-		const ctx = canvas.getContext('2d')
-		const buffer = getBuffer(data.name).getChannelData(0)
-		
+						
+		ctx = canvas.getContext('2d')
+						
 		canvas.width = buffer.length / length * el.parentNode.clientWidth
-		console.log(buffer.length, length)
 		canvas.height = 100
 		canvas.style.width = canvas.width + "px"
 		canvas.style.height = canvas.height + "px"
@@ -60,14 +65,30 @@
 		ctx.fillStyle = 'black'
 		ctx.translate(1, 1);
 		
-		const sampling = buffer.length / canvas.width
+		sampling = buffer.length / canvas.width
 		for (let x = 0; x < canvas.width; x++) {
 			let size = buffer[Math.floor(x * sampling)] +
 					   buffer[Math.floor(x * sampling + sampling / 2)] 
-					   * canvas.height / 4
+					   * canvas.height * 0.25
 			ctx.fillRect(x, canvas.height / 2 - size, 2, size * 2)
 		}
 	})
+	
+	$: start = data.effects[0].params.delay
+	$: end = data.effects[0].params.delay + buffer.length + 200 * sampling
+	$: if ($playTime > start && $playTime < end) {
+		let playHeadIntoSamp = Math.floor(($playTime - start) / sampling - 1)
+		ctx.clearRect(0, -1, canvas.width, canvas.height)
+		
+		for (let x = 0; x < canvas.width; x++) {
+			let sizeOffset = x < playHeadIntoSamp ? 10 / (playHeadIntoSamp - x) + 0.25 : 0.25
+						
+			let size = buffer[Math.floor(x * sampling)] +
+					   buffer[Math.floor(x * sampling + sampling / 2)] 
+					   * canvas.height * sizeOffset
+			ctx.fillRect(x, canvas.height / 2 - size, 2, size * 2)
+		}	
+	}
 </script>
 
 <style>
