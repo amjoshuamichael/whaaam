@@ -1,14 +1,14 @@
 <script context="module">
 	export const prerender = true
-</script>
-
-<script>
+	
 	import {samps} from './SampList'
 	import getContext from './AudioContext'
 	import GenBuffer from './Generate'
+	import {setStartTime} from './Time'
+</script>
 
+<script>
 	const Play = () => {
-		console.log('loading Play!')
 		$samps.forEach(function(samp) {
 			let newBuffer = GenBuffer(samp)
 			
@@ -17,7 +17,8 @@
 			source.connect(getContext().destination)
 			source.start()
 		})
-		console.log('play Started!')
+		
+		setStartTime()
 	}
 </script>
 

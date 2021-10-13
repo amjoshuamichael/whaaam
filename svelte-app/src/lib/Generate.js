@@ -11,7 +11,7 @@ async function init() {
 init()
 
 const seconds = 5
-const length = getContext().sampleRate * seconds
+export const length = getContext().sampleRate * seconds
 const channels = 2
 
 export default function GenBuffer(samp) {
@@ -37,8 +37,6 @@ export default function GenBuffer(samp) {
 		
 		newBuffer.copyToChannel(samp.effects[samp.effects.length - 1].buffer, c)
 	}
-	
-	console.log(samp)
 	
 	return newBuffer
 }

@@ -2,6 +2,7 @@
 	export const prerender = true
 	
 	import Samp from './Samp.svelte'
+	import Playhead from './Playhead.svelte'
 	import {onMount} from 'svelte'
 	import {samps} from './SampList'
 	import {loadAllSamps, areAllSoundsLoaded} from './LoadedSounds'
@@ -19,8 +20,8 @@
 <style>
 	.SampList {
 		position: relative;
-		width: 60%;
-		height: 80%;
+		width: 100%;
+		height: 90%;
 		overflow: scroll;
 	}
 </style>
@@ -31,4 +32,5 @@
 			<Samp data={samp}></Samp>
 		{/each}
 	</div>
+	<Playhead />
 {/if}

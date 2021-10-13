@@ -24,47 +24,32 @@ export const samps = writable([
 				'buffer': null
 			}
 		]
-	},
-	{
-		'name': 'kick_house',
-		'enabled': true,
-		'buffer': null,
-		'effects': [
-			{
-				'name': 'copy',
-				'enabled': true,
-				'params': {
-					'delay': -100
-				},
-				'buffer': null
-			}
-		]
 	}
 ])
 
 export function addSamp(sampName) {
-	samps.update(l => {
-		l.push(
-			{
-				'name': sampName,
-				'enabled': true,
-				'buffer': null,
-				'effects': [
-					{
-						'name': 'copy',
-						'enabled': true,
-						'params': {
-							'delay': 0
-						},
-						'buffer': null
-					}
-				]
-			}
-		)
-		return l
-	})
-	
 	if (!isLoaded(sampName)) {
-		loadSound(sampName)
+		loadSound(sampName, function () {
+			samps.update(l => {
+				l.push(
+					{
+						'name': sampName,
+						'enabled': true,
+						'buffer': null,
+						'effects': [
+							{
+								'name': 'copy',
+								'enabled': true,
+								'params': {
+									'delay': 0
+								},
+								'buffer': null
+							}
+						]
+					}
+				)
+				return l
+			})
+		})
 	}
 }

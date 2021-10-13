@@ -6,7 +6,7 @@
 </script>
 
 <script>
-	let soundNames = ['kick_house', 'crash_long_echo']
+	let soundNames = ['kick_house', 'crash_long_echo', 'bad_bass']
 	
 	const loadSoundThenPlay = (name) => {
 		if (!isLoaded(name)) {
@@ -44,6 +44,7 @@
 	.SoundSelect:hover {
 		width: calc(100vw - var(--padding) * 2);
 		height: calc(100vh - var(--padding) * 2);
+		border-radius: calc(var(--size) / 4);
 	}
 	
 	.SoundSelect svg {
