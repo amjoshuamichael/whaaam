@@ -34,6 +34,9 @@ export default function GenBuffer(samps) {
 					case ('bitcrush'):
 						waap.bitcrush(samp.effects[index - 1].buffer, effect.buffer, effect.params.downsample)
 					break
+					case ('filter'):
+						waap.filter(samp.effects[index - 1].buffer, effect.buffer)
+					break
 				}
 			})
 			

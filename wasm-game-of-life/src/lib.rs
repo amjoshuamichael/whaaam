@@ -47,19 +47,40 @@ pub fn bitcrush(ain: &mut [f32], aout: &mut [f32], amount: usize) {
 
     let mut s: usize = 0;
 
-    let amount2 = amount / 2;
-    let amount3 = amount / 3;
-
     while s < out_length {
         if s > in_length {
              aout[s] = 0.;
         } else {
-            aout[s] = 
-                (ain[s - s % amount] 
-                + ain[s - s % amount2]
-                + ain[s - s % amount3]) / 3.;
+            aout[s] = ain[s - s % amount];
         }
 
+        s += 1;
+    }
+}
+
+#[wasm_bindgen]
+pub fn filter(ain: &mut [f32], aout: &mut[f32]) {
+    let out_length: usize = aout.len();
+
+    let mut s: usize = 120;
+    let a: f32 = 0.99;
+
+    const I0: f32 = 0.000805896;
+    const I1: f32 = 0.00161179;
+    const I2: f32 = 0.000805896;
+    const O1: f32 = -1.94082;
+    const O2: f32 = 0.944046;   
+
+    while s < out_length {
+        aout[s] = 
+            I0 * ain[s]
+            + I1 * ain[s - 1]
+            + I2 * ain[s - 2]
+            - O1 * aout[s - 1]
+            - O2 * aout[s - 2];
+        
+        aout[s] = (aout[s] + aout[s] + ain[s]) / 3.;
+        
         s += 1;
     }
 }
