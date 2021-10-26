@@ -1,11 +1,12 @@
 <script context="module">
 	export const prerender = true
-	
-	import Samp from './Samp.svelte'
-	import Playhead from './Playhead.svelte'
 	import {onMount} from 'svelte'
+
 	import {samps} from './SampList'
 	import {loadAllSamps, areAllSoundsLoaded} from './LoadedSounds'
+
+	import Samp from './Samp.svelte'
+	import Playhead from './Playhead.svelte'
 </script>
 
 <script>
@@ -34,5 +35,6 @@
 			<Samp data={samp}></Samp>
 		{/each}
 	</div>
+
 	<Playhead />
 {/if}

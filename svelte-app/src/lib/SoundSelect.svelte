@@ -6,8 +6,8 @@
 </script>
 
 <script>
-	let soundNames = ['kick_house', 'crash_long_echo', 'bad_bass']
-	
+	let soundNames = ['knife_hit_1', 'paper_crumple_1', 'air_pump_1', 'air_pump_2', 'clip_hit_1', 'clip_hit_2', 'container_hit_1', 'container_hit_2', 'container_scrape_1', 'door_stopper_rattle_1', 'door_stopper_rattle_2', 'exercise_ball_hit_1', 'exercise_ball_hit_2', 'foam_rip_1', 'foam_rip_2', 'foam_rip_3', 'foam_rip_4', 'foam_rub_1', 'foam_rub_2', 'foam_rub_long_1', 'foam_scrape_1', 'foam_scrape_2', 'foam_scrape_3', 'foam_scrape_short_1', 'foam_scrape_short_2', 'glass_cup_hit_1', 'glass_cup_hit_2', 'glass_hit_long_1', 'glass_hit_long_2', 'glass_hit_long_3', 'glass_scrape_1', 'glass_scrape_2', 'glass_scrape_3', 'glass_tone_1', 'ice_rattle_1', 'keys_rattle_1', 'kitchen_timer_alarm_1', 'kitchen_timer_loadup_1', 'knife_hit_2', 'large_container_hit_1', 'large_container_hit_2', 'large_leaf_hit_1', 'large_water_bottle_hit_loud_1', 'large_water_bottle_hit_loud_2', 'large_water_bottle_hit_quiet_1', 'lazer_slinky_1', 'lazer_slinky_2', 'leaf_hit_1', 'metal_jiggle_1', 'metal_jiggle_2', 'microphone_rub_1', 'microphone_rub_2', 'microphone_rub_3', 'paper_crumble_3', 'paper_crumple_2', 'paper_movement_1', 'plastic_scrape_1', 'plastic_scrunch_1', 'post_it_spin_1', 'post_it_spin_2', 'scissors_1', 'slinky_rattle_1', 'slinky_rattle_2', 'smooth_container_hit_1', 'speed_bump_1', 'speed_bump_2', 'speed_bump_3', 'speedcube_spin_1', 'speedcube_spin_2', 'spray_bottle_1', 'spray_bottle_2', 'straw_pullout_1', 'straw_pullout_2', 'table_hit_1', 'toy_gun_load_1', 'toy_gun_load_2', 'toy_gun_load_3', 'toy_gun_shoot_1', 'toy_gun_shoot_2', 'toy_gun_trigger', 'velcro_1', 'velcro_2', 'velcro_3', 'water_bottle_shake', 'water_hit_1', 'water_hit_2', 'water_hit_3', 'water_splash_1', 'wood_hit_1', 'wood_hit_2', 'wood_rub_1', 'wood_rub_2']
+
 	const loadSoundThenPlay = (name) => {
 		if (!isLoaded(name)) {
 			loadSound(name, function() {
@@ -38,7 +38,7 @@
 		background-color: #4384f0;
 		transition-duration: 0.4s;
 		z-index: 2;
-		overflow: hidden;
+		overflow: scroll;
 	}
 	
 	.SoundSelect:hover {
@@ -80,9 +80,10 @@
 			<button on:click={() => addSamp(soundName)}>{soundName}</button>
 		</div>
 	{/each}
-	<svg viewBox="0 0 128 128" version="1.1" style="position: absolute; bottom: 0px; right: 0px;">
+	<svg viewBox="0 0 128 128" style="position: absolute; bottom: 0px; right: 0px;">
 		<defs>
-			<filter id="inset-shadow"> // adapted from https://stackoverflow.com/questions/20778568/how-to-make-an-inset-drop-shadow-in-svg
+			// adapted from https://stackoverflow.com/questions/20778568/how-to-make-an-inset-drop-shadow-in-svg
+			<filter id="inset-shadow">
 			  <feOffset dx="0" dy="0" />
 			  <feGaussianBlur stdDeviation="10" result="offset-blur" />
 			  <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" /> 

@@ -4,7 +4,12 @@
 	import {samps} from './SampList'
 	import getContext from './AudioContext'
 	import GenBuffer from './Generate'
-	import {setStartTime} from './Time'
+	import {startTimer} from './Time'
+	
+	let onPlay = []
+	export function doOnPlay(callback) {
+		onPlay.push(callback)
+	}
 </script>
 
 <script>
@@ -16,7 +21,9 @@
 		source.connect(getContext().destination)
 		source.start()
 		
-		setStartTime()
+		startTimer()
+		
+		onPlay.forEach((fn) => {fn()})
 	}
 </script>
 

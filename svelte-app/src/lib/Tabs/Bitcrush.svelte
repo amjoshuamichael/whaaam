@@ -89,7 +89,7 @@
 			</svg>
 		</div>
 		<div class="controls fill">
-			<Dial params={params} value="downsample" onchange={refreshVisual} min={min} max={max}/>
+			<Dial params={params} modify="downsample" onchange={refreshVisual} min={min} max={max} speed={1}/>
 		</div>
 	{/if}
 </div>

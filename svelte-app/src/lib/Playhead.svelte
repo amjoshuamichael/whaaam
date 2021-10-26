@@ -15,4 +15,4 @@
 	}
 </style>
 
-<div class="Playhead" style="left: calc({$playTime / length * 100}% - 10px)"></div>
+<div class="Playhead" style="left: calc( {$playTime / length * 100}% - 10px)"></div>

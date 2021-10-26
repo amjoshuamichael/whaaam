@@ -1,33 +1,31 @@
 <script context="module">
 	import { fly } from 'svelte/transition'
-	import Wand from './Icons/Wand.svelte'
-	import Audio from './Icons/Audio.svelte'
-	import Effects from './Tabs/Effects.svelte'
+
+	import WandIcon from './Icons/Wand.svelte'
+	import AudioIcon from './Icons/Audio.svelte'
+
+	import EffectsTab from './Tabs/Effects.svelte'
 </script>
 
 <script>
 	export let data
+
 	let tab = 0
-	
-	function setTab(num) {
-		tab = num
-		console.log(num)
-	}
 </script>
 
-<style>
+<style lang="scss">
 	.samp-menu-container {
 		position: relative;
 		margin: 50px;
 		filter: drop-shadow(0px 2px 10px #00000060);
 		display: block;
-		z-index: 2;
+		z-index: index($order, menu);
 	}
 	
 	.samp-menu {
 		width: 100%;
 		height: 75vh;
-		background-color: #d0d0d0;
+		background-color: blanchedalmond;
 		border-radius: 10px;
 		overflow: hidden;
 	}
@@ -35,13 +33,14 @@
 	.navbar {
 		position: absolute;
 		left: 0px;
-		background-color: #808080;
+		background-color: #ffffff;
 		height: 100%;
 		width: 50px;
 		border-radius: 10px;
 		transition-duration: 0.2s;
 		overflow-x: hidden;
 		z-index: 3;
+		font-family: Larsseit;
 	}
 	
 	.navbar:hover {
@@ -80,14 +79,14 @@
 		<div class="navbar">
 			<ul>
 				<li>
-					<button class="icon" on:click={() => setTab(0)}>
-						<Wand />
+					<button class="icon" on:click={() => tab = 0}>
+						<WandIcon />
 						<span>Effects</span>
 					</button>
 				</li>
 				<li>
-					<button class="icon" on:click={() => setTab(1)}>
-						<Audio />
+					<button class="icon" on:click={() => tab = 1}>
+						<AudioIcon />
 						<span>Sample</span>
 					</button>
 				</li>
@@ -95,7 +94,7 @@
 		</div>
 		{#if tab == 0}
 			<div class="tab">
-				<Effects data={data}/>
+				<EffectsTab data={data}/>
 			</div>
 		{/if}
 	</div>

@@ -3,12 +3,10 @@ import getContext from './AudioContext'
 
 import wasm from '../../../wasm-game-of-life/Cargo.toml';
 let waap;
-
+init()
 async function init() {
 	waap = await wasm()
 }
-
-init()
 
 export const seconds = 5
 export const length = getContext().sampleRate * seconds
@@ -20,24 +18,43 @@ export default function GenBuffer(samps) {
 	samps.forEach(function(samp) {		
 		for (let c = 0; c < channels; c++) {
 			let outputData = output.getChannelData(c)
-			let sampBufferData = getBuffer(samp.name).getChannelData(c)	
-			
+			let sampBufferData = getBuffer(samp.name).getChannelData(0)
+
+			let lastEffectIndex = 0
+
 			samp.effects.forEach(function(effect, index) {
-				if (effect.buffer == null) {
-					effect.buffer = new Float32Array(length)
-				}
-				
+				if (effect.buffer == null) effect.buffer = new Float32Array(length)
+
+				if (!effect.enabled) return // works like continue
+
 				switch (effect.name) {
 					case ('copy'):
-						waap.copy(sampBufferData, effect.buffer, effect.params.delay)
+						waap.copy(sampBufferData,
+							effect.buffer, effect.params.delay)
 					break
 					case ('bitcrush'):
-						waap.bitcrush(samp.effects[index - 1].buffer, effect.buffer, effect.params.downsample)
+						waap.bitcrush(samp.effects[lastEffectIndex].buffer,
+							effect.buffer, effect.params.downsample)
 					break
 					case ('filter'):
-						waap.filter(samp.effects[index - 1].buffer, effect.buffer)
+						waap.filter(samp.effects[lastEffectIndex].buffer, effect.buffer,
+							effect.params.frequency, effect.params.q, getContext().sampleRate)
+					break
+					case ('reverb'):
+						waap.reverb(samp.effects[lastEffectIndex].buffer, effect.buffer,
+							effect.params.delay, effect.params.feedback, getContext().sampleRate)
+					break
+					case ('delay'):
+						waap.delay(samp.effects[lastEffectIndex].buffer, effect.buffer,
+							effect.params.delay, effect.params.feedback, getContext().sampleRate)
+					break
+					case ('flanger'):
+						waap.flanger(samp.effects[lastEffectIndex].buffer,
+							effect.buffer, effect.params.speed)
 					break
 				}
+
+				lastEffectIndex = index
 			})
 			
 			waap.add(samp.effects[samp.effects.length - 1].buffer, outputData)

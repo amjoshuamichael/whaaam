@@ -1,20 +1,28 @@
-import getContext from './AudioContext'
+import context from './AudioContext'
 import {writable} from 'svelte/store'
-import {seconds} from './Generate'
 
 let startTime = 0
 
-export function setStartTime() {
-	startTime = getContext().currentTime
-	setInterval(calculatePlayTime, 15)
+export function startTimer() {
+	startTime = context().currentTime
+	setInterval(calculatePlayTime, 30)
 }
 
 export let playTime = writable(0)
 
 function calculatePlayTime() {
-	if (playTime > length) {
+	if (soundIsOver()) {
 		playTime = 0
 		clearInterval(calculatePlayTime)
 	}
-	playTime.set((getContext().currentTime - startTime) * getContext().sampleRate)
+
+	playTime.set(timeSinceStart())
+}
+
+function soundIsOver() {
+	return playTime > length;
+}
+
+function timeSinceStart() {
+	return (context().currentTime - startTime) * context().sampleRate;
 }
