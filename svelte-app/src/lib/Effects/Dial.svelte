@@ -1,5 +1,5 @@
 <script context="module">
-	import * as _ from '../Utilities.js'
+	import {onMount} from 'svelte'
 </script>
 
 <script>
@@ -41,6 +41,10 @@
 		document.onmouseup = null
 		document.onmousemove = null
 	}
+
+	onMount(function() {
+		rotation = params[modify].map(min, max, rotMin, rotMax)
+	})
 </script>
 
 <style>

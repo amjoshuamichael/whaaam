@@ -31,8 +31,8 @@
 
 {#if _areAllSoundsLoaded === true}
 	<div class="SampList" bind:this={sampList}>
-		{#each $samps as samp}
-			<Samp data={samp}></Samp>
+		{#each $samps as samp, index}
+			<Samp data={samp} sampIndex={index}></Samp>
 		{/each}
 	</div>
 

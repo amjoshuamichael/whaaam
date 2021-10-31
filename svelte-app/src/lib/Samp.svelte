@@ -1,6 +1,4 @@
-<script context="module">
-	const shortClickLength = 300
-
+<script>
 	import {lerp} from './Utilities'
 	import makeDraggable from './DragAndDrop'
 	import {getBuffer} from './LoadedSounds'
@@ -9,13 +7,13 @@
 	import {playTime} from './Time'
 	import SampMenu from './SampMenu.svelte'
 	import Modal from './Modal.svelte'
-</script>
 
-<script>
-	export let data
+	export let data, sampIndex
 
 	const buffer = getBuffer(data.name).getChannelData(0)
-	
+
+	const shortClickLength = 300
+
 	let el
 	let canvas
 	let ctx
@@ -60,7 +58,6 @@
 		isMenuOpened = false
 		dragAndDrop()
 		addClickDetectionEvent()
-		console.log('menuclosed')
 	}
 
 	function visualize() {
@@ -115,54 +112,17 @@
 	})
 </script>
 
-<style lang="scss">
-	.samp {
-		position: absolute;
-		border-radius: 5px;
-		filter: drop-shadow(0px 2px 4px #00000040);
-		transition: filter 0.2s ease, transform 0.2s ease, top 0.5s ease-out;
-		transform: scale(1, 1);
-		z-index: index($order, samp);
-
-		&.below-menu {
-			top: calc(100% - 120px) !important;
-			z-index: index($order, selected-samp);
-		}
-
-		&.no-menu {
-			cursor: move;
-
-			&:active {
-				filter: drop-shadow(0px 2px 15px #00000060);
-				transform: scale(1, 1.4);
-				transition: filter 0.2s ease, transform 0.2s ease;
-			}
-		}
-	}
-
-	svg {
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		left: 0px;
-		top: 0px;
-
-		&.circle-visualizer {
-			top: -200px;
-			height: 500px;
-			filter: blur(10px);
-			pointer-events: none;
-		}
-	}
-</style>
-
-<div class="samp {isMenuOpened ? 'below-menu' : 'no-menu'}" bind:this={el}
+<div bind:this={el}
+	 class="absolute filter drop-shadow-sm-dark duration-300 z-samp
+			{isMenuOpened
+			? 'below-menu z-selected-samp'
+			: 'cursor-move active:transition-filter active:drop-shadow-lg-dark'}"
 	 style="left: {data.effects[0].params.delay / length * 100}%">
 	<div bind:this={canvas}>
-		<svg class="waveform">
+		<svg class="waveform w-full h-full absolute">
 			<path d={path} fill="transparent" stroke="blue" stroke-width="1px"/>
 		</svg>
-		<svg class="circle-visualizer">
+		<svg class="circle-visualizer w-full h-full absolute blur-2xl pointer-events-none">
 			<circle cy="50%" bind:this={circle} fill="AliceBlue"/>
 		</svg>
 	</div>
@@ -170,6 +130,12 @@
 
 {#if isMenuOpened}
 	<Modal onClose={closeMenu}>
-		<SampMenu data={data} />
+		<SampMenu data={data} sampIndex={sampIndex}/>
 	</Modal>
 {/if}
+
+<style>
+	.below-menu {
+		top: calc(100% - 110px) !important;
+	}
+</style>

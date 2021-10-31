@@ -4,7 +4,7 @@
 </script>
 
 <script>
-	export let params
+	export let params, index
 	
 	let width;
 	
@@ -33,13 +33,6 @@
 </script>
 
 <style>
-	.bitcrusher {
-		border-radius: 10px;
-		background: #101010;
-		height: 200px;
-		position: relative;
-	}
-	
 	.lines {
 		display: flex;
 		justify-content: space-around;
@@ -64,7 +57,7 @@
 	}
 </style>
 
-<div class="bitcrusher" bind:clientWidth={width}>
+<div class="flex-grow bg-gray-900" bind:clientWidth={width}>
 	{#if width !== undefined}
 		<div class="grid fill">
 			<div class="horizontal lines fill">

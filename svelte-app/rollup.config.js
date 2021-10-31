@@ -25,6 +25,12 @@ export default [{
         },
         preprocess:  sveltePreprocess({
           sourceMap: !production,
+          postcss: {
+            plugins: [
+              require("tailwindcss"),
+              // require("autoprefixer"),
+            ],
+          },
           scss: {
             // path is relative to root
             prependData: `

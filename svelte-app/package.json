@@ -19,11 +19,14 @@
     "svelte-preprocess": "^4.9.8"
   },
   "dependencies": {
+    "autoprefixer": "^9.8.8",
     "jquery": "^3.6.0",
+    "postcss": "^7.0.39",
     "rollup": "^2.58.3",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-svelte": "^7.1.0",
     "sirv-cli": "^1.0.14",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "wasm-game-of-life": "file:target/wasm-pack/wasm-game-of-life"
   }
 }

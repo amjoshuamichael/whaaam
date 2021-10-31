@@ -21,7 +21,7 @@ export default function GenBuffer(samps) {
 			let sampBufferData = getBuffer(samp.name).getChannelData(0)
 
 			let lastEffectIndex = 0
-
+			
 			samp.effects.forEach(function(effect, index) {
 				if (effect.buffer == null) effect.buffer = new Float32Array(length)
 
@@ -47,6 +47,7 @@ export default function GenBuffer(samps) {
 					case ('delay'):
 						waap.delay(samp.effects[lastEffectIndex].buffer, effect.buffer,
 							effect.params.delay, effect.params.feedback, getContext().sampleRate)
+						console.log(effect.params.delay)
 					break
 					case ('flanger'):
 						waap.flanger(samp.effects[lastEffectIndex].buffer,
@@ -57,7 +58,7 @@ export default function GenBuffer(samps) {
 				lastEffectIndex = index
 			})
 			
-			waap.add(samp.effects[samp.effects.length - 1].buffer, outputData)
+			waap.add(samp.effects[lastEffectIndex].buffer, outputData)
 		}
 	})
 	

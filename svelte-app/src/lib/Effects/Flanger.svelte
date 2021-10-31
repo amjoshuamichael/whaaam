@@ -6,7 +6,7 @@
 </script>
 
 <script>
-	export let params
+	export let params, index
 	
 	let width;
 	
@@ -60,13 +60,6 @@
 </script>
 
 <style>
-	.effect {
-		border-radius: 10px;
-		background: #101010;
-		height: 200px;
-		position: relative;
-	}
-	
 	.fill {
 		position: absolute;
 		width: 100%;
@@ -74,11 +67,11 @@
 	}
 </style>
 
-<div class="effect" bind:clientWidth={width}>
+<div class="flex-grow effect" bind:clientWidth={width}>
 	<div class="visuals fill">
 		<svg class="fill" style="background: #2b73ff">
 			<path d="{path}" fill="transparent" stroke-width="5" stroke="white"/>
 		</svg>
 	</div>
-	<Dial params={params} modify="speed" min={1} max={48000} speed={1}/>
+	<Dial params={params} modify="speed" min={0.2} max={200} speed={1}/>
 </div>

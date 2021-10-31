@@ -1,1 +1,7 @@
-$order: samp, selected-samp, modal, menu;
+$order: samp, selected-samp, modal, menu, menu-overlay, play-button;
+
+@each $z in $order {
+  :global(.z-#{$z}) {
+    z-index: index($order, $z);
+  }
+}

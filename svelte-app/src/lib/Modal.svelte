@@ -3,16 +3,9 @@
     import { fade } from 'svelte/transition'
 </script>
 
-<style lang="scss">
-    .container {
-        background-color: #40404040;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        z-index: index($order, modal);
-    }
-</style>
-
-<div class="container" on:click="{onClose}" transition:fade>
-    <slot></slot>
+<div class="z-menu p-10 fixed z-menu w-full h-full pointer-events-none">
+        <div class="pointer-events-auto h-full pb-20">
+                <slot></slot>
+        </div>
 </div>
+<div class="w-full h-full bg-gray-500 opacity-20 fixed" on:mousedown="{onClose}" transition:fade />

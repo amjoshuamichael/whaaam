@@ -27,14 +27,6 @@
 	}
 </script>
 
-<style>
-	.Play {
-		position: fixed;
-		top: 20px;
-		left: 20px;
-	}
-</style>
-
-<button class="Play" on:click={Play}>
+<button class="fixed left-3 top-3 z-play-button" on:click={Play}>
 	Play
 </button>
