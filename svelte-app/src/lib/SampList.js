@@ -1,11 +1,10 @@
 import {loadSound, isLoaded} from './LoadedSounds'
 import {writable} from 'svelte/store'
-import defaults from './defaultEffects'
-import {effects, index} from "./SampMenu/EffectOptions.svelte";
+import defaults from './DefaultEffects'
 
 export const samps = writable([
 	{
-		'name': 'crash_long_echo',
+		'name': 'bad_bass',
 		'enabled': true,
 		'buffer': null,
 		'effects': [

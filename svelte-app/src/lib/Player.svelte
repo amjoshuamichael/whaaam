@@ -5,6 +5,7 @@
 	import getContext from './AudioContext'
 	import GenBuffer from './Generate'
 	import {startTimer} from './Time'
+	import registerShortcut from './GUILib/Shortcuts'
 	
 	let onPlay = []
 	export function doOnPlay(callback) {
@@ -22,9 +23,11 @@
 		source.start()
 		
 		startTimer()
-		
+
 		onPlay.forEach((fn) => {fn()})
 	}
+
+	registerShortcut("Space", Play)
 </script>
 
 <button class="fixed left-3 top-3 z-play-button" on:click={Play}>

@@ -45,8 +45,9 @@
 	const refreshRate = 20;
 	onMount(function() {
 		setInterval(function() {
-			curve += getContext().sampleRate / params.speed / refreshRate - 1
-			refreshVisual();
+			let curveAdd = params.speed / 400 * (getContext().sampleRate / refreshRate)
+			curve += curveAdd
+			refreshVisual()
 		}, 1000 / refreshRate)
 		
 		doOnPlay(function() {
@@ -73,5 +74,5 @@
 			<path d="{path}" fill="transparent" stroke-width="5" stroke="white"/>
 		</svg>
 	</div>
-	<Dial params={params} modify="speed" min={0.2} max={200} speed={1}/>
+	<Dial params={params} modify="speed" min={0.005} max={0.2} speed={1}/>
 </div>

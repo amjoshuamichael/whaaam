@@ -21,7 +21,7 @@ export default function GenBuffer(samps) {
 			let sampBufferData = getBuffer(samp.name).getChannelData(0)
 
 			let lastEffectIndex = 0
-			
+
 			samp.effects.forEach(function(effect, index) {
 				if (effect.buffer == null) effect.buffer = new Float32Array(length)
 

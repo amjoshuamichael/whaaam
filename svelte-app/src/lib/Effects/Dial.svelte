@@ -5,7 +5,7 @@
 <script>
 	export let params
 	export let modify
-	export let onchange
+	export let onchange = undefined
 	export let min
 	export let max
 	export let speed
@@ -34,7 +34,7 @@
 		
 		params[modify] = rotation.map(rotMin, rotMax, min, max)
 		
-		if (onchange !== undefined) onchange()
+		onchange?.()
 	}
 	
 	function stopDial() {

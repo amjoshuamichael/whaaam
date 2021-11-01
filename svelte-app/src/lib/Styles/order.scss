@@ -1,4 +1,4 @@
-$order: samp, selected-samp, modal, menu, menu-overlay, play-button;
+$order: samp-background, samp, selected-samp, modal, menu, menu-overlay, play-button;
 
 @each $z in $order {
   :global(.z-#{$z}) {
