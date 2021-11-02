@@ -8,11 +8,10 @@ export default function (key, fn) {
 }
 
 window.onkeypress = function(e) {
-    console.log(e)
-
-    shortcuts.forEach(shortcut => {
+    for (const shortcut of shortcuts) {
         if (e.code === shortcut.key) {
             shortcut.fn()
+            break
         }
-    })
+    }
 }

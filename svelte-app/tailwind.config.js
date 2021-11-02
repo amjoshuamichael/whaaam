@@ -20,6 +20,9 @@ module.exports = {
       dropShadow: {
         'sm-dark': '0 1px 2px rgba(0, 0, 0, 0.25)',
         'lg-dark': '0 1px 8px rgba(0, 0, 0, 0.3)'
+      },
+      cursor: {
+        'h-resize': 'ew-resize'
       }
     },
   },

@@ -12,17 +12,9 @@ export const samps = writable([
 				'name': 'copy',
 				'enabled': true,
 				'params': {
-					'delay': 0,
+					'delay': 100,
 					'startOffset': 0,
 					'endOffset': 0
-				},
-				'buffer': null
-			},
-			{
-				'name': 'flanger',
-				'enabled': true,
-				'params': {
-					'speed': 0.2
 				},
 				'buffer': null
 			}

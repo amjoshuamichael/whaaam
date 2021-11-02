@@ -74,5 +74,5 @@
 			<path d="{path}" fill="transparent" stroke-width="5" stroke="white"/>
 		</svg>
 	</div>
-	<Dial params={params} modify="speed" min={0.005} max={0.2} speed={1}/>
+	<Dial params={params} modify="speed" min={0.005} max={0.02} speed={1}/>
 </div>
