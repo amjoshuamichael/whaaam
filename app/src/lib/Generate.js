@@ -1,7 +1,7 @@
 import {getBuffer} from './LoadedSounds'
 import getContext from './AudioContext'
 
-import wasm from '../../../wasm-game-of-life/Cargo.toml';
+import wasm from '../../../fx/Cargo.toml';
 let waap;
 init()
 async function init() {

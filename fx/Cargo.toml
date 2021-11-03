@@ -1,8 +1,8 @@
 [package]
-name = "wasm-game-of-life"
+name = "whaaam-fx"
 version = "0.1.0"
-authors = ["Tobias Bernet <tobias.bernet@shopviu.com>"]
-edition = "2018"
+authors = ["Aaron Joshuamichael Cruz <me@amjoshuamichael.com>"]
+edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "rlib"]

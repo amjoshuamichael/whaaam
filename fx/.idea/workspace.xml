@@ -10,13 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="949a555e-8251-4bc6-afdc-0b62aa6956db" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../svelte-app/src/lib/DefaultEffects.js" beforeDir="false" afterPath="$PROJECT_DIR$/../svelte-app/src/lib/DefaultEffects.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../svelte-app/src/lib/GUILib/DragAndDrop.js" beforeDir="false" afterPath="$PROJECT_DIR$/../svelte-app/src/lib/GUILib/DragAndDrop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../svelte-app/src/lib/Generate.js" beforeDir="false" afterPath="$PROJECT_DIR$/../svelte-app/src/lib/Generate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../svelte-app/src/lib/Samp.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../svelte-app/src/lib/Samp.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../svelte-app/src/lib/SampList.js" beforeDir="false" afterPath="$PROJECT_DIR$/../svelte-app/src/lib/SampList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../svelte-app/src/lib/Waveform.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../svelte-app/src/lib/Waveform.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/effects/copy.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/effects/copy.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/Generate.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Generate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,9 +47,9 @@
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -71,6 +69,7 @@
       <workItem from="1635321380525" duration="249000" />
       <workItem from="1635651728979" duration="7184000" />
       <workItem from="1635881602330" duration="3980000" />
+      <workItem from="1635916538565" duration="1923000" />
     </task>
     <servers />
   </component>
