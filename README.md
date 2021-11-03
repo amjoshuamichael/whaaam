@@ -16,7 +16,7 @@ The effects library is a little more complex. Native effects in audio software a
 
 ## Sample Library
 
-Whaaam comes with one small sample library. Anyone has full permission to take these sounds and use them outside of the program. They are located in the “samples” older.
+Whaaam comes with one small sample library. Anyone has full permission to take these sounds and use them outside of the program. They are located in the “samples” folder.
 
 
 To run the code on your computer, clone this repo and run `npm install` and `npm run dev` in the app folder.}
