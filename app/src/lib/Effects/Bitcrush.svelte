@@ -4,7 +4,7 @@
 </script>
 
 <script>
-	export let params, index
+	export let params
 	
 	let width;
 	
