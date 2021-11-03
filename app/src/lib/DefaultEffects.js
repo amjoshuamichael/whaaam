@@ -1,4 +1,15 @@
 export default {
+    'copy': {
+        'name': 'copy',
+        'enabled': true,
+        'params': {
+            'soundName': 'bad_bass',
+            'delay': 0,
+            'startOffset': 0,
+            'endOffset': 0
+        },
+        'buffer': null
+    },
     'bitcrush': {
         'name': 'bitcrush',
         'enabled': true,

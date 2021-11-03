@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="de7a0689-32c5-4322-ad47-7635c80afad5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/lib/DefaultEffects.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/DefaultEffects.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/GUILib/DragAndDrop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/GUILib/DragAndDrop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/Generate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/Generate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/LoadedSounds.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/LoadedSounds.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/Samp.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/Samp.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/SampList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/SampList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/SampList.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/SampList.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/Waveform.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/Waveform.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wasm-game-of-life/src/effects/copy.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../wasm-game-of-life/src/effects/copy.rs" afterDir="false" />
-    </list>
+    <list default="true" id="de7a0689-32c5-4322-ad47-7635c80afad5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

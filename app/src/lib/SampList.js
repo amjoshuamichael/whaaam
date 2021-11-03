@@ -7,17 +7,19 @@ export const samps = writable([
 		'name': 'bad_bass',
 		'enabled': true,
 		'buffer': null,
+		'generator': {
+			'name': 'copy',
+			'enabled': true,
+			'params': {
+				'soundName': 'bad_bass',
+				'delay': 100,
+				'startOffset': 0,
+				'endOffset': 0
+			},
+			'buffer': null
+		},
 		'effects': [
-			{
-				'name': 'copy',
-				'enabled': true,
-				'params': {
-					'delay': 100,
-					'startOffset': 0,
-					'endOffset': 0
-				},
-				'buffer': null
-			}
+
 		]
 	}
 ])
@@ -28,18 +30,21 @@ export function addSamp(sampName) {
 			samps.update(l => {
 				l.push(
 					{
-						'name': sampName,
 						'enabled': true,
 						'buffer': null,
+						'generator': {
+							'name': 'copy',
+							'enabled': true,
+							'params': {
+								'soundName': sampName,
+								'delay': 0,
+								'startOffset': 0,
+								'endOffset': 0
+							},
+							'buffer': null
+						},
 						'effects': [
-							{
-								'name': 'copy',
-								'enabled': true,
-								'params': {
-									'delay': 0
-								},
-								'buffer': null
-							}
+
 						]
 					}
 				)

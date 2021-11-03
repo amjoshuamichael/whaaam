@@ -31,7 +31,8 @@ export async function loadSound(name, callback) {
 }
 
 function refreshAreAllSoundsLoaded() {
-	areAllSoundsLoaded.set(get(samps).every(samp => isLoaded(samp.name)))
+	console.log(get(samps))
+	areAllSoundsLoaded.set(get(samps).every(samp => isLoaded(samp.generator.params.soundName)))
 }
 
 function loadBufferIntoSounds(buffer) {

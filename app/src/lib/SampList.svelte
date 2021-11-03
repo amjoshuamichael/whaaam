@@ -1,15 +1,11 @@
-<script context="module">
-	export const prerender = true
+<script>
 	import {onMount} from 'svelte'
-
 	import {samps} from './SampList'
 	import {loadAllSamps, areAllSoundsLoaded} from './LoadedSounds'
 
 	import Samp from './Samp.svelte'
 	import Playhead from './Playhead.svelte'
-</script>
 
-<script>
 	onMount(loadAllSamps)
 
 	let _areAllSoundsLoaded
@@ -20,17 +16,8 @@
 	let sampList
 </script>
 
-<style>
-	.SampList {
-		position: relative;
-		width: 100%;
-		height: 100%;
-		overflow: scroll;
-	}
-</style>
-
 {#if _areAllSoundsLoaded === true}
-	<div class="SampList" bind:this={sampList}>
+	<div class="relative w-full h-full overflow-x-scroll" bind:this={sampList}>
 		{#each $samps as samp, index}
 			<Samp data={samp} sampIndex={index}></Samp>
 		{/each}

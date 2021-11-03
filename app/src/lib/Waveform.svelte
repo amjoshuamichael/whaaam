@@ -7,9 +7,7 @@
     let canvas
     let path
 
-    onMount(visualize)
-
-    function visualize() {
+    export const refresh = () => {
         let sampling = buffer.length / canvas.clientWidth
 
         path = `M 0 ${canvas.clientHeight / 2}`
@@ -22,6 +20,8 @@
             path += `${command}${x} ${canvas.clientHeight / 2 + y}`
         }
     }
+
+    onMount(refresh)
 </script>
 
 <svg class="w-full h-full" bind:this={canvas}>
