@@ -1,13 +1,14 @@
 <!--suppress XmlInvalidId -->
 <script>
     import {getNew, getLast} from './UUID'
+    import Icon from './Icons/Icon.svelte'
 
-    export let onClick
+    export let onClick, icon
 </script>
 
-<div>
+<div class="flex-grow relative">
     <button on:click={onClick} id={getNew()} class="hidden"/>
-    <label for={getLast()} class="w-full cursor-pointer">
-        <slot></slot>
+    <label for={getLast()} class="full cursor-pointer">
+        <Icon src={icon} />
     </label>
 </div>

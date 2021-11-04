@@ -10,11 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="949a555e-8251-4bc6-afdc-0b62aa6956db" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/lib/Generate.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Generate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/GUILib/Shortcuts.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/GUILib/Shortcuts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/LoadedSounds.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/LoadedSounds.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/Samp.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Samp.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +69,7 @@
       <workItem from="1635321380525" duration="249000" />
       <workItem from="1635651728979" duration="7184000" />
       <workItem from="1635881602330" duration="3980000" />
-      <workItem from="1635916538565" duration="1923000" />
+      <workItem from="1635916538565" duration="2784000" />
     </task>
     <servers />
   </component>

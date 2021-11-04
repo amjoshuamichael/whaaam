@@ -1,4 +1,15 @@
 const production = !process.env.ROLLUP_WATCH;
+
+const plugin = require("tailwindcss/plugin");
+
+const hoverSiblingPlugin = plugin(function ({ addVariant, e }) {
+  addVariant("hover-sibling", ({ container }) => {
+    container.walkRules((rule) => {
+      rule.selector = `:hover + .hover-sibling\\:${rule.selector.slice(1)}`;
+    });
+  });
+});
+
 module.exports = {
   mode: 'jit',
   future: {
@@ -29,6 +40,7 @@ module.exports = {
   variants: {
     width: ["responsive", "hover", "focus"],
     dropShadow: ['active', 'focus'],
+    backgroundColor: ['hover-sibling']
   },
-  plugins: []
+  plugins: [hoverSiblingPlugin]
 }

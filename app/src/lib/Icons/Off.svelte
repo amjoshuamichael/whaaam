@@ -1,1 +1,0 @@
-<img src="build/images/off.png">

@@ -6,18 +6,19 @@
 	import {setupSingleClick} from './GUILib/ClickFunctions'
 
 	import SampMenu from './SampMenu.svelte'
+	import ButtonArray from './ButtonArray.svelte'
 	import Modal from './Modal.svelte'
-	import Waveform from "./Waveform.svelte";
+	import Waveform from './Waveform.svelte'
 
 	export let data, sampIndex
 
 	let waveform
-	let el, lHandle, rHandle, mHandle
-	onMount(function () {
-		makeDraggable(mHandle, el)
+	let box, el, lHandle, rHandle, mHandle
+	onMount(() => {
+		makeDraggable(mHandle, box)
 		mHandle.dragX = mHandle.dragY = true
 		mHandle.onDrop = () => {
-			data.generator.params.delay = el.offsetLeft / el.parentElement.clientWidth * length
+			data.generator.params.delay = box.offsetLeft / box.parentElement.clientWidth * length
 		}
 
 		makeDraggable(lHandle)
@@ -29,7 +30,6 @@
 		}
 		lHandle.onDrop = () => {
 			data.generator.params.startOffset = el.clip().left / el.parentElement.clientWidth * length
-			console.log(data.generator.params.startOffset)
 		}
 
 		makeDraggable(rHandle)
@@ -53,20 +53,29 @@
 	const buffer = getBuffer(data.generator.params.soundName).getChannelData(0)
 </script>
 
-<div bind:this={el}
-	class="absolute filter drop-shadow-sm-dark duration-300 z-samp overflow-hidden hover:bg-blue-300
+<div bind:this={box}
+	class="absolute drop-shadow-sm-dark duration-300 z-samp group
 			{isMenuOpened 	? 'below-menu z-selected-samp'
 							: 'active:transition-filter active:drop-shadow-lg-dark'}"
- 	style="left: {data.generator.params.delay / length * 100}%;
- 	width: {buffer.length / length * 100}%;
- 	height: 100px">
-	<div class="w-full h-full absolute z-samp" bind:this={waveform}>
-		<Waveform buffer={buffer} />
+	style="left: {data.generator.params.delay / length * 100}%;
+	width: {buffer.length / length * 100}%;
+	height: 100px">
+	<div bind:this={el} class="full group-hover:bg-blue-300">
+		<div class="full z-samp" bind:this={waveform}>
+			<Waveform buffer={buffer} />
+		</div>
+		<div class="full z-samp-handles">
+			<div bind:this={mHandle} class="full cursor-move" />
+			<div bind:this={lHandle} class="absolute left-0 w-2 h-full cursor-h-resize" />
+			<div bind:this={rHandle} class="absolute right-0 w-2 h-full cursor-h-resize" />
+		</div>
 	</div>
-	<div class="absolute w-full h-full z-samp-handles">
-		<div bind:this={mHandle} class="absolute w-full h-full cursor-move" />
-		<div bind:this={lHandle} class="absolute left-0 w-2 h-full cursor-h-resize" />
-		<div bind:this={rHandle} class="absolute right-0 w-2 h-full cursor-h-resize" />
+	<div class="absolute -top-8 h-8 w-24 bg-blue-300 opacity-0 group-hover:opacity-100 flex">
+		<ButtonArray buttons={ {
+			'crop': () => {console.log('crop left')},
+			'envelope': () => {console.log('envelope')},
+			'time-stretch': () => {alert('time-stretch')},
+		} }/>
 	</div>
 </div>
 

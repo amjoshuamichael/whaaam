@@ -2,6 +2,7 @@
 	import SoundSelect from './lib/SoundSelect.svelte'
 	import SampList from './lib/SampList.svelte'
 	import Player from './lib/Player.svelte'
+	import IconLoader from './lib/Icons/IconLoader.svelte'
 </script>
 
 <style global lang="postcss">
@@ -24,6 +25,7 @@
 </style>
 
 <main>
+	<IconLoader />
 	<SoundSelect />
 	<SampList />
 	<Player />

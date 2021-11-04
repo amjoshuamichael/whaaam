@@ -27,15 +27,13 @@ export default [{
           sourceMap: !production,
           postcss: {
             plugins: [
-              require("tailwindcss"),
-              // require("autoprefixer"),
+              require("tailwindcss")
             ],
           },
           scss: {
             // path is relative to root
             prependData: `
-              @import 'src/lib/Styles/order.scss';
-              @import 'src/lib/Styles/fonts.scss';
+              @import 'src/lib/Styles/main.scss';
             `
           }
         })
