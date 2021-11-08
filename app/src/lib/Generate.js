@@ -57,7 +57,8 @@ function renderGenerator(generator) {
 		case ('copy'):
 			let soundBuffer = getBuffer(generator.params.soundName).getChannelData(0)
 			waap.copy(soundBuffer, generator.buffer,
-				generator.params.delay, generator.params.startOffset, generator.params.endOffset)
+				generator.params.delay, generator.params.startOffset, generator.params.endOffset,
+				generator.params.fadeInOffset, generator.params.fadeOutOffset)
 			break
 	}
 }

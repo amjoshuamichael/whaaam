@@ -1,9 +1,6 @@
-import '../Utilities/ClipAccess'
-
 export default function (handle, item) {
-    let xDiff = 0, yDiff = 0, xPos = 0, yPos = 0;
+    let xDiff = 0, yDiff = 0, xPos = 0, yPos = 0
     handle.onmousedown = grab;
-
 
     function grab(e) {
         e.preventDefault()

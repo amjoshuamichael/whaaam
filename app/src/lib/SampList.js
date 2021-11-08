@@ -4,17 +4,19 @@ import defaults from './DefaultEffects'
 
 export const samps = writable([
 	{
-		'name': 'bad_bass',
+		'name': 'pinknoise',
 		'enabled': true,
 		'buffer': null,
 		'generator': {
 			'name': 'copy',
 			'enabled': true,
 			'params': {
-				'soundName': 'bad_bass',
+				'soundName': 'pinknoise',
 				'delay': 100,
 				'startOffset': 0,
-				'endOffset': 0
+				'endOffset': 0,
+				'fadeInOffset': 44100,
+				'fadeOutOffset': 0
 			},
 			'buffer': null
 		},

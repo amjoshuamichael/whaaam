@@ -4,30 +4,56 @@ use web_sys::console;
 
 #[wasm_bindgen] #[allow(dead_code)]
 pub fn copy(ain: &mut [f32], aout: &mut [f32],
-            delay: isize, start_offset: usize, end_offset: usize) {
+            delay: isize,
+            start_offset: isize, end_offset: isize,
+            fade_in_offset: isize, fade_out_offset: isize) {
     let mut s = 0;
-    let start = cmp::max(0, delay + start_offset as isize) as usize;
-    loop {
-        s += 1;
-        if s >= start { break; }
 
-        aout[s] = 0.;
+    let sound_start = delay + start_offset;
+    while s < sound_start {
+        aout[s as usize] = 0.;
+
+        s += 1;
     }
 
-    let mut copy_point = if delay > 0 { start_offset }
-                                else { cmp::max(start_offset, (- delay) as usize) };
-    let sound_end = ain.len() - end_offset;
-    loop {
+    let mut sound_copy_point = start_offset;
+
+    let fade_in_slope = (fade_in_offset - start_offset) as f32;
+    let fade_in_end = sound_start + fade_in_offset;
+    while s < fade_in_end {
+        let fade = (s - start_offset) as f32 / fade_in_slope;
+
+        aout[s as usize] = ain[sound_copy_point as usize] * smooth(fade);
+        sound_copy_point += 1;
+
         s += 1;
-        copy_point += 1;
-        if copy_point >= sound_end { break; }
-        aout[s] = ain[copy_point];
     }
 
-    let out_length = aout.len();
-    loop {
+    let sound_end = ain.len() as isize - end_offset + delay;
+    let fade_out_start = sound_end - fade_out_offset;
+    while s < fade_out_start {
+        aout[s as usize] = ain[sound_copy_point as usize];
+        sound_copy_point += 1;
+
         s += 1;
-        if s >= out_length { break; }
-        aout[s] = 0.;
+    }
+
+    let fade_out_slope = (fade_out_offset - end_offset) as f32;
+    while s < sound_end {
+        let fade = 1. - (s - fade_out_start) as f32 / fade_out_slope;
+
+        aout[s as usize] = ain[sound_copy_point as usize] * smooth(fade);
+        sound_copy_point += 1;
+
+        s += 1;
+    }
+
+    let out_length = aout.len() as isize;
+    while s < out_length {
+        aout[s as usize] = 0.;
+
+        s += 1;
     }
 }
+
+fn smooth(input: f32) -> f32 { 3. * input * input - 2. * input * input * input }
