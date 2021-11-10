@@ -3,10 +3,12 @@ export default {
         'name': 'copy',
         'enabled': true,
         'params': {
-            'soundName': 'bad_bass',
+            'soundName': 'pinknoise',
             'delay': 0,
             'startOffset': 0,
-            'endOffset': 0
+            'endOffset': 0,
+            'fadeInOffset': 0,
+            'fadeOutOffset': 0
         },
         'buffer': null
     },

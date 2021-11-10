@@ -4,18 +4,18 @@ import defaults from './DefaultEffects'
 
 export const samps = writable([
 	{
-		'name': 'pinknoise',
+		'name': 'glass_scrape_3',
 		'enabled': true,
 		'buffer': null,
 		'generator': {
 			'name': 'copy',
 			'enabled': true,
 			'params': {
-				'soundName': 'pinknoise',
-				'delay': 100,
+				'soundName': 'glass_scrape_3',
+				'delay': 0,
 				'startOffset': 0,
 				'endOffset': 0,
-				'fadeInOffset': 44100,
+				'fadeInOffset': 0,
 				'fadeOutOffset': 0
 			},
 			'buffer': null
@@ -41,7 +41,9 @@ export function addSamp(sampName) {
 								'soundName': sampName,
 								'delay': 0,
 								'startOffset': 0,
-								'endOffset': 0
+								'endOffset': 0,
+								'fadeInOffset': 0,
+								'fadeOutOffset': 0
 							},
 							'buffer': null
 						},

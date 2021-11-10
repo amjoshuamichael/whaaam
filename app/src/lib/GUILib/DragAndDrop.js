@@ -4,7 +4,7 @@ export default function (handle, item) {
 
     function grab(e) {
         e.preventDefault()
-        handle.onGrab?.(xPos, yPos, xDiff, yDiff)
+        handle.onGrab?.(xDiff, yDiff, xPos, yPos)
 
         if (handle.dragX) xPos = e.clientX
         if (handle.dragY) yPos = e.clientY
@@ -15,7 +15,7 @@ export default function (handle, item) {
 
     function drag(e) {
         e.preventDefault()
-        handle.onDrag?.(xPos, yPos, xDiff, yDiff)
+        handle.onDrag?.(xDiff, yDiff, xPos, yPos)
 
         if (handle.dragX) {
             xDiff = xPos - e.clientX
@@ -34,7 +34,7 @@ export default function (handle, item) {
     }
 
     function drop() {
-        handle.onDrop?.(xPos, yPos, xDiff, yDiff)
+        handle.onDrop?.(xDiff, yDiff, xPos, yPos)
 
         document.onmouseup = null
         document.onmousemove = null

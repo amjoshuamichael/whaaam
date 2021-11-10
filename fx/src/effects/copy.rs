@@ -18,10 +18,10 @@ pub fn copy(ain: &mut [f32], aout: &mut [f32],
 
     let mut sound_copy_point = start_offset;
 
-    let fade_in_slope = (fade_in_offset - start_offset) as f32;
+    let fade_in_slope = fade_in_offset as f32;
     let fade_in_end = sound_start + fade_in_offset;
     while s < fade_in_end {
-        let fade = (s - start_offset) as f32 / fade_in_slope;
+        let fade = (s - sound_start) as f32 / fade_in_slope;
 
         aout[s as usize] = ain[sound_copy_point as usize] * smooth(fade);
         sound_copy_point += 1;
@@ -38,7 +38,7 @@ pub fn copy(ain: &mut [f32], aout: &mut [f32],
         s += 1;
     }
 
-    let fade_out_slope = (fade_out_offset - end_offset) as f32;
+    let fade_out_slope = fade_out_offset as f32;
     while s < sound_end {
         let fade = 1. - (s - fade_out_start) as f32 / fade_out_slope;
 

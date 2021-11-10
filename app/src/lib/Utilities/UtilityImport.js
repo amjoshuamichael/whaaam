@@ -1,2 +1,5 @@
-import * from './ClipAccess'
-import * from './GradientAccess'
+import './ClipAccess'
+import './GradientAccess'
+import './TrueSize'
+import './ClipPathAccess'
+import './Clamp'

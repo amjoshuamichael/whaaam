@@ -1,6 +1,6 @@
 const shortClickLength = 300
 
-export function setupSingleClick(el, fn) {
+export function singleClick(el, fn) {
     el.addEventListener("mousedown", startClickTimer)
     el.addEventListener("mouseup", endClickTimer)
     el.onShortClick = fn

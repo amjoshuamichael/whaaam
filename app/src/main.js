@@ -1,5 +1,4 @@
-import './lib/Utilities/ClipAccess'
-import './lib/Utilities/GradientAccess'
+import './lib/Utilities/UtilityImport.js'
 
 import App from './App.svelte';
 

@@ -10,13 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="949a555e-8251-4bc6-afdc-0b62aa6956db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../app/src/lib/Utilities/GradientAccess.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/src/lib/Utilities/UtilityImport.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/lib/GUILib/Waveform.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/lib/Utilities/ClipPathAccess.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/src/lib/Utilities/TrueSize.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/GUILib/ClickFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/GUILib/ClickFunctions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/src/lib/GUILib/DragAndDrop.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/GUILib/DragAndDrop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/lib/Icons/Icon.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Icons/Icon.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/lib/Icons/IconManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Icons/IconManager.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/src/lib/Samp.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Samp.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/lib/Styles/order.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Styles/order.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/Utilities/UtilityImport.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Utilities/UtilityImport.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/Waveform.svelte" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/effects/copy.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/effects/copy.rs" afterDir="false" />

@@ -56,6 +56,7 @@ function renderGenerator(generator) {
 	switch (generator.name) {
 		case ('copy'):
 			let soundBuffer = getBuffer(generator.params.soundName).getChannelData(0)
+			console.log(generator.params)
 			waap.copy(soundBuffer, generator.buffer,
 				generator.params.delay, generator.params.startOffset, generator.params.endOffset,
 				generator.params.fadeInOffset, generator.params.fadeOutOffset)
