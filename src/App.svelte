@@ -1,10 +1,10 @@
 <script>
-	import SoundSelect from './lib/SoundSelect.svelte'
-	import SampList from './lib/SampList.svelte'
-	import Player from './lib/Player.svelte'
-	import Meter from './lib/Meter.svelte'
-	import IconLoader from './lib/Icons/IconLoader.svelte'
-	import Trash from './lib/Trash.svelte'
+	import SoundSelect from './SoundSelect.svelte'
+	import SampList from './SampList.svelte'
+	import Player from './Player.svelte'
+	import Meter from './Meter.svelte'
+	import IconLoader from './Icons/IconLoader.svelte'
+	import Trash from './Trash.svelte'
 </script>
 
 <style global lang="postcss">

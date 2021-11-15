@@ -33,7 +33,7 @@ export default [{
           scss: {
             // path is relative to root
             prependData: `
-              @import 'src/lib/Styles/main.scss';
+              @import 'src/Styles/main.scss';
             `
           }
         })
