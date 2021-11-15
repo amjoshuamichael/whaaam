@@ -2,7 +2,9 @@
 	import SoundSelect from './lib/SoundSelect.svelte'
 	import SampList from './lib/SampList.svelte'
 	import Player from './lib/Player.svelte'
+	import Meter from './lib/Meter.svelte'
 	import IconLoader from './lib/Icons/IconLoader.svelte'
+	import Trash from './lib/Trash.svelte'
 </script>
 
 <style global lang="postcss">
@@ -29,4 +31,6 @@
 	<SoundSelect />
 	<SampList />
 	<Player />
+	<Meter />
+	<Trash />
 </main>

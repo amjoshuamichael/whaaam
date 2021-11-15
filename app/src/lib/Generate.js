@@ -9,12 +9,12 @@ async function init() {
 }
 
 export const seconds = 5
-export const length = getContext().sampleRate * seconds
+export const lengthInSamples = getContext().sampleRate * seconds
 const channels = 2
 
 let output, outputL, outputR
 export default function genBuffers(samps) {
-	output = getContext().createBuffer(2, length, getContext().sampleRate)
+	output = getContext().createBuffer(2, lengthInSamples, getContext().sampleRate)
 	outputL = output.getChannelData(0)
 	outputR = output.getChannelData(1)
 
@@ -25,7 +25,7 @@ export default function genBuffers(samps) {
 
 export function genBuffer(samp) {
 	for (let c = 0; c < channels; c++) {
-		samp.generator.buffer ??= new Float32Array(length)
+		samp.generator.buffer ??= new Float32Array(lengthInSamples)
 		renderGenerator(samp.generator)
 
 		if (samp.effects.length == 0) {
@@ -35,14 +35,14 @@ export function genBuffer(samp) {
 
 		let lastEffectIndex = 0
 		samp.effects.forEach(function(effect, index) {
-			effect.buffer ??= new Float32Array(length)
+			effect.buffer ??= new Float32Array(lengthInSamples)
 
 			if (!effect.enabled) return // works like continue
 
 			if (index == 0) {
 				renderEffect(samp.generator.buffer, effect)
 			} else {
-				renderEffect(samp.effects[index].buffer, effect)
+				renderEffect(samp.effects[lastEffectIndex].buffer, effect)
 			}
 
 			lastEffectIndex = index
@@ -56,7 +56,6 @@ function renderGenerator(generator) {
 	switch (generator.name) {
 		case ('copy'):
 			let soundBuffer = getBuffer(generator.params.soundName).getChannelData(0)
-			console.log(generator.params)
 			waap.copy(soundBuffer, generator.buffer,
 				generator.params.delay, generator.params.startOffset, generator.params.endOffset,
 				generator.params.fadeInOffset, generator.params.fadeOutOffset)

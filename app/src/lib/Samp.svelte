@@ -1,11 +1,13 @@
 <script>
 	import {getBuffer} from './LoadedSounds'
 	import {onMount} from 'svelte'
-	import {length} from './Generate'
+	import {lengthInSamples} from './Generate'
 	import makeDraggable from './GUILib/DragAndDrop'
 	import {singleClick} from './GUILib/ClickFunctions'
 	import genWavePath from './GUILib/Waveform'
 	import {getNew, getLast} from './UUID'
+	import {assign, unassign} from './GUILib/Shortcuts'
+	import {removeSamp, alterGenParameter} from './SampList'
 
 	import SampMenu from './SampMenu.svelte'
 	import Modal from './Modal.svelte'
@@ -19,38 +21,49 @@
 		const timelineWidth = box.parentElement.clientWidth
 		const waveWidth = waveform.clientWidth
 
+		function mapToTime(input) { return input / timelineWidth * lengthInSamples }
+
 		makeDraggable(waveform, box)
 		waveform.dragX = waveform.dragY = true
-		waveform.onDrop = () => data.generator.params.delay = box.offsetLeft / timelineWidth * length
+		waveform.onDrop = () => alterGenParameter('delay', sampIndex, mapToTime(box.offsetLeft))
 
 		const maxClip = 20
 
 		makeDraggable(clipLHandle)
 		clipLHandle.dragX = true
-		clipLHandle.onDrag = (xDiff) => clipL = (clipL - xDiff).clamp(0, waveWidth - clipR - maxClip)
-		clipLHandle.onDrop = () => data.generator.params.startOffset = clipL / timelineWidth * length
+		clipLHandle.onDrag = (xDiff) => clipL = (clipL - xDiff).clamp(0, waveWidth - clipR - envIn - envOut - maxClip)
+		clipLHandle.onDrop = () => alterGenParameter('startOffset', sampIndex, mapToTime(clipL))
 
 		makeDraggable(clipRHandle)
 		clipRHandle.dragX = true
-		clipRHandle.onDrag = (xDiff) => clipR += clipR >= -xDiff ? xDiff : 0
-		clipRHandle.onDrop = () => data.generator.params.endOffset = clipR / timelineWidth * length
+		clipRHandle.onDrag = (xDiff) => clipR = (clipR + xDiff).clamp(0, waveWidth - clipL - envIn - envOut - maxClip)
+		clipRHandle.onDrop = () => alterGenParameter('endOffset', sampIndex, mapToTime(clipR))
 
 		makeDraggable(envLHandle)
 		envLHandle.dragX = true
-		envLHandle.onDrag = (xDiff) => envIn -= envIn >= 0 ? xDiff : 0
-		envLHandle.onDrop = () => data.generator.params.fadeInOffset = envIn / timelineWidth * length
+		envLHandle.onDrag = (xDiff) => envIn = (envIn - xDiff).clamp(0, waveWidth - clipL - clipR - envOut - maxClip)
+		envLHandle.onDrop = () => alterGenParameter('fadeInOffset', sampIndex, mapToTime(envIn))
 
 		makeDraggable(envRHandle)
 		envRHandle.dragX = true
-		envRHandle.onDrag = (xDiff) => envOut += envOut >= 0 ? xDiff : 0
-		envRHandle.onDrop = () => data.generator.params.fadeOutOffset = envOut / timelineWidth * length
+		envRHandle.onDrag = (xDiff) => envOut = (envOut + xDiff).clamp(0, waveWidth - clipL - clipR - envIn - maxClip)
+		envRHandle.onDrop = () => alterGenParameter('fadeOutOffset', sampIndex, mapToTime(envOut))
 
 		singleClick(box, openMenu)
 	})
 
 	let isMenuOpened
-	function openMenu() { isMenuOpened = true }
-	function closeMenu() { isMenuOpened = false }
+	function openMenu() {
+		isMenuOpened = true
+		assign('Backspace', () => {
+			unassign('Backspace')
+			removeSamp(data.UUID)
+		})
+	}
+	function closeMenu() {
+		isMenuOpened = false
+		unassign('Backspace')
+	}
 
 	const buffer = getBuffer(data.generator.params.soundName).getChannelData(0)
 </script>
@@ -58,14 +71,16 @@
 <div bind:this={box}
 	class="absolute duration-300 z-samp group transition-colors {isMenuOpened && 'below-menu z-selected-samp'}"
 	id="box"
-	style="left: {data.generator.params.delay / length * 100}%; width: {buffer.length / length * 100}%; height: 100px;">
+	style="width: {buffer.length / lengthInSamples * 100}%; height: 100px;">
 	<svg class="absolute w-full h-3/4 cursor-move" style="clip-path: inset(0px {clipR}px 0px {clipL}px)" bind:this={waveform}>
 		{#if box !== undefined}
 			<defs>
 				<linearGradient id="{getNew()}">
 					<stop offset="{clipL / box.clientWidth * 100}%"  stop-color="#0000ff00" />
-					<stop offset="{(envIn + clipL) / box.clientWidth * 100}%" stop-color="#0000ffff" />
-					<stop offset="{(1 - (envOut + clipR) / box.clientWidth) * 100}%"  stop-color="#0000ffff" />
+					<stop offset="{(clipL + envIn * 0.75) / box.clientWidth * 100}%" stop-color="#0000ff80" />
+					<stop offset="{(clipL + envIn) / box.clientWidth * 100}%" stop-color="#0000ffff" />
+					<stop offset="{(1 - (clipR + envOut) / box.clientWidth) * 100}%"  stop-color="#0000ffff" />
+					<stop offset="{(1 - (clipR + envOut * 0.75) / box.clientWidth) * 100}%"  stop-color="#0000ff80" />
 					<stop offset="{(1 - clipR / box.clientWidth) * 100}%" stop-color="#0000ff00" />
 				</linearGradient>
 			</defs>

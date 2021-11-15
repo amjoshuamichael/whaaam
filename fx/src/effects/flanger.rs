@@ -27,7 +27,8 @@ pub fn flanger(ain: &mut [f32], aout: &mut [f32], speed: f32) {
 
         let mut sample_point = s - (sample_offset as usize).min(s);
 
-        aout[s] = ain[s] + ain[sample_point] + aout[sample_point - 3] * 0.5;
+        // aout[s] = ain[s] + ain[sample_point] + aout[sample_point - 3] * 0.5;
+        aout[s] = s as f32 / ain.len() as f32;
 
         s += 1;
     }

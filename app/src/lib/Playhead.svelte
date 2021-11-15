@@ -1,6 +1,6 @@
 <script context="module">
 	import {playTime} from './Time'
-	import {length} from './Generate'
+	import {lengthInSamples} from './Generate'
 </script>
 
 <style>
@@ -15,4 +15,4 @@
 	}
 </style>
 
-<div class="Playhead" style="left: calc( {$playTime / length * 100}% - 10px)"></div>
+<div class="Playhead" style="left: calc({$playTime / lengthInSamples * 100}% - 10px)"></div>

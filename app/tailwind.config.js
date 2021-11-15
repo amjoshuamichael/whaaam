@@ -34,6 +34,10 @@ module.exports = {
       },
       cursor: {
         'h-resize': 'ew-resize'
+      },
+      borderWidth: {
+        '12': '12px',
+        '16': '16px'
       }
     },
   },

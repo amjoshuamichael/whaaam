@@ -1,14 +1,9 @@
-<script context="module">
-	import {onMount} from 'svelte'
-</script>
-
 <script>
-	export let params
-	export let modify
-	export let onchange = undefined
-	export let min
-	export let max
-	export let speed
+	import {onMount} from 'svelte'
+	import {alterEffectParameter} from '../SampList'
+	import Play from '../Play'
+
+	export let params, modify, onchange = undefined, min, max, speed
 	
 	let rotation = 0
 	let rotOnClick
@@ -33,13 +28,14 @@
 			).clamp(rotMin, rotMax)
 		
 		params[modify] = rotation.map(rotMin, rotMax, min, max)
-		
+
 		onchange?.()
 	}
 	
 	function stopDial() {
 		document.onmouseup = null
 		document.onmousemove = null
+		Play()
 	}
 
 	onMount(function() {

@@ -1,13 +1,17 @@
 let shortcuts = []
 
-export default function (key, fn) {
+export function assign (key, fn) {
     shortcuts.push({
         key: key,
         fn: fn
     })
 }
 
-window.onkeypress = function(e) {
+export function unassign (key) {
+    shortcuts = shortcuts.filter(el => el.key != key)
+}
+
+window.onkeydown = function(e) {
     for (const shortcut of shortcuts) {
         if (e.code === shortcut.key) {
             e.preventDefault()

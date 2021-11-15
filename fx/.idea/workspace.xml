@@ -10,17 +10,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="949a555e-8251-4bc6-afdc-0b62aa6956db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../app/src/lib/GUILib/Waveform.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/src/lib/Utilities/ClipPathAccess.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../app/src/lib/Utilities/TrueSize.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/lib/GUILib/ClickFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/GUILib/ClickFunctions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/lib/GUILib/DragAndDrop.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/GUILib/DragAndDrop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/App.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/Button.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Button.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/Effects/Dial.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Effects/Dial.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/Effects/Flanger.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Effects/Flanger.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/GUILib/SampleBuffer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/GUILib/SampleBuffer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/GUILib/Shortcuts.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/GUILib/Shortcuts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/GUILib/Waveform.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/GUILib/Waveform.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/Generate.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Generate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/Icons/IconLoader.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Icons/IconLoader.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/Icons/IconManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Icons/IconManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/LoadedSounds.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/LoadedSounds.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/Player.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Player.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/Playhead.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Playhead.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../app/src/lib/Samp.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Samp.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/lib/Utilities/UtilityImport.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Utilities/UtilityImport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/lib/Waveform.svelte" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/SampList.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/SampList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/SampMenu.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/SampMenu.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/SampMenu/EffectOptions.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/SampMenu/EffectOptions.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/src/lib/Styles/extra-tailwind.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/lib/Styles/extra-tailwind.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../app/tailwind.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/effects/copy.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/effects/copy.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/effects/flanger.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/effects/flanger.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,13 +64,6 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
     <option name="version" value="2" />
@@ -78,6 +83,8 @@
       <workItem from="1635916538565" duration="2784000" />
       <workItem from="1636274410874" duration="223000" />
       <workItem from="1636362685345" duration="5754000" />
+      <workItem from="1636663293424" duration="2117000" />
+      <workItem from="1636869126598" duration="22000" />
     </task>
     <servers />
   </component>

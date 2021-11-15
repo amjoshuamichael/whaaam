@@ -2,7 +2,7 @@
 	import Dial from './Dial.svelte'
 	import {onMount} from 'svelte'
 	import getContext from '../AudioContext'
-	import {doOnPlay} from '../Player.svelte'
+	import {doOnPlay} from '../Play'
 </script>
 
 <script>

@@ -1,4 +1,4 @@
-import './lib/Utilities/UtilityImport.js'
+import './lib/Utilities/UtilityImport'
 
 import App from './App.svelte';
 

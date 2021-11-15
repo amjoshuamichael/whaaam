@@ -1,7 +1,7 @@
 import getContext from './AudioContext'
 import {writable, get} from 'svelte/store'
 import {samps} from './SampList'
-import {makeRequest} from './Utilities'
+import makeRequest from './Utilities/MakeRequest'
 
 let loadedSounds = {};
 export let areAllSoundsLoaded = writable(false)
@@ -21,7 +21,7 @@ export function getBuffer(name) {
 }
 
 export async function loadSound(name, callback) {
-	let result = await makeRequest("GET", `build/samples/${name}.wav`);
+	let result = await makeRequest("GET", `build/samples/${name}.wav`, 'arraybuffer');
 
 	let buffer = await getContext().decodeAudioData(result)
 	loadedSounds[name] = buffer
@@ -34,17 +34,9 @@ function refreshAreAllSoundsLoaded() {
 	areAllSoundsLoaded.set(get(samps).every(samp => isLoaded(samp.generator.params.soundName)))
 }
 
-function loadBufferIntoSounds(buffer) {
-	loadedSounds[name] = buffer
-}
-
-function handleSoundLoadingError() {
-	console.log('ERROR!')
-}
-
 export function loadAllSamps() {
 	get(samps).forEach(function(samp) {
-		loadSound(samp.name)
+		loadSound(samp.generator.params.soundName)
 	})
 }
 

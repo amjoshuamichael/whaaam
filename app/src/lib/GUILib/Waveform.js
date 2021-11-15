@@ -1,5 +1,4 @@
-import sampleBufferAt from './SampleBuffer';
-
+import {sampleBufferPoint} from './SampleBuffer';
 
 export default function (buffer, canvas) {
     let path
@@ -9,7 +8,7 @@ export default function (buffer, canvas) {
     path = `M 0 ${canvas.clientHeight / 2}`
 
     for (let x = 0; x < canvas.clientWidth - 1; x++) {
-        let y = sampleBufferAt(buffer, x * sampling) * canvas.clientHeight * 0.1
+        let y = sampleBufferPoint(buffer, x * sampling) * canvas.clientHeight * 0.1
 
         let command = x % 10 != 0 ? 'T' : 'L'
 

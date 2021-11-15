@@ -1,17 +1,19 @@
 import {loadSound, isLoaded} from './LoadedSounds'
-import {writable} from 'svelte/store'
+import {writable, get} from 'svelte/store'
 import defaults from './DefaultEffects'
+import Play from './Play'
+import {getNew} from './UUID'
 
 export const samps = writable([
 	{
-		'name': 'glass_scrape_3',
+		'UUID': getNew(),
 		'enabled': true,
 		'buffer': null,
 		'generator': {
 			'name': 'copy',
 			'enabled': true,
 			'params': {
-				'soundName': 'glass_scrape_3',
+				'soundName': 'bad_bass',
 				'delay': 0,
 				'startOffset': 0,
 				'endOffset': 0,
@@ -26,36 +28,55 @@ export const samps = writable([
 	}
 ])
 
-export function addSamp(sampName) {
-	if (!isLoaded(sampName)) {
-		loadSound(sampName, function () {
-			samps.update(l => {
-				l.push(
-					{
-						'enabled': true,
-						'buffer': null,
-						'generator': {
-							'name': 'copy',
-							'enabled': true,
-							'params': {
-								'soundName': sampName,
-								'delay': 0,
-								'startOffset': 0,
-								'endOffset': 0,
-								'fadeInOffset': 0,
-								'fadeOutOffset': 0
-							},
-							'buffer': null
-						},
-						'effects': [
+export async function addSamp(sampName) {
+	if (!isLoaded(sampName)) await loadSound(sampName)
 
-						]
-					}
-				)
-				return l
-			})
-		})
-	}
+	samps.update(l => {
+		l.push(
+			{
+				'UUID': getNew(),
+				'enabled': true,
+				'buffer': null,
+				'generator': {
+					'name': 'copy',
+					'enabled': true,
+					'params': {
+						'soundName': sampName,
+						'delay': 0,
+						'startOffset': 0,
+						'endOffset': 0,
+						'fadeInOffset': 0,
+						'fadeOutOffset': 0
+					},
+					'buffer': null
+				},
+				'effects': [
+
+				]
+			}
+		)
+		return l
+	})
+
+	Play()
+}
+
+export function alterGenParameter(paramName, sampIndex, newVal) {
+	samps.update(l => {
+		l[sampIndex].generator.params[paramName] = newVal
+		return l
+	})
+
+	Play()
+}
+
+export function alterEffectParameter(paramName, sampIndex, effectIndex, newVal) {
+	samps.update(l => {
+		l[sampIndex].effects[effectIndex].params[paramName] = newVal
+		return l
+	})
+
+	Play()
 }
 
 export function addEffectToSamp(effectName, sampIndex) {
@@ -63,6 +84,8 @@ export function addEffectToSamp(effectName, sampIndex) {
 		l[sampIndex].effects.push(defaults[effectName])
 		return l
 	})
+
+	Play()
 }
 
 export function removeEffectFromSamp(effectIndex, sampIndex) {
@@ -70,6 +93,8 @@ export function removeEffectFromSamp(effectIndex, sampIndex) {
 		l[sampIndex].effects.splice(effectIndex, 1)
 		return l
 	})
+
+	Play()
 }
 
 export function toggleEffectInSamp(effectIndex, sampIndex) {
@@ -77,4 +102,15 @@ export function toggleEffectInSamp(effectIndex, sampIndex) {
 		l[sampIndex].effects[effectIndex].enabled ^= true
 		return l
 	})
+
+	Play()
+}
+
+export function removeSamp(UUID) {
+	samps.update(l => {
+		l = l.filter(s => s.UUID !== UUID)
+		return l
+	})
+
+	Play()
 }
