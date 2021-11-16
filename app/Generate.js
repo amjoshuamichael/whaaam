@@ -1,7 +1,7 @@
 import {getBuffer} from './LoadedSounds'
 import getContext from './AudioContext'
 
-import wasm from '../fx/Cargo.toml';
+import wasm from '../fxold/Cargo.toml';
 let waap;
 init()
 async function init() {
@@ -10,13 +10,11 @@ async function init() {
 
 export const seconds = 5
 export const lengthInSamples = getContext().sampleRate * seconds
-const channels = 2
 
-let output, outputL, outputR
+let output, channels
 export default function genBuffers(samps) {
 	output = getContext().createBuffer(2, lengthInSamples, getContext().sampleRate)
-	outputL = output.getChannelData(0)
-	outputR = output.getChannelData(1)
+	channels = [output.getChannelData(0), output.getChannelData(1)]
 
 	samps.forEach(genBuffer)
 	
@@ -24,31 +22,27 @@ export default function genBuffers(samps) {
 }
 
 export function genBuffer(samp) {
-	for (let c = 0; c < channels; c++) {
+	for (const channel of channels) {
 		samp.generator.buffer ??= new Float32Array(lengthInSamples)
 		renderGenerator(samp.generator)
 
 		if (samp.effects.length == 0) {
-			waap.add(samp.generator.buffer, c == 0 ? outputL : outputR)
+			waap.add(samp.generator.buffer, channel)
 			continue
 		}
 
 		let lastEffectIndex = 0
-		samp.effects.forEach(function(effect, index) {
+		samp.effects.forEach((effect, index) => {
 			effect.buffer ??= new Float32Array(lengthInSamples)
 
 			if (!effect.enabled) return // works like continue
 
-			if (index == 0) {
-				renderEffect(samp.generator.buffer, effect)
-			} else {
-				renderEffect(samp.effects[lastEffectIndex].buffer, effect)
-			}
+			renderEffect(index === 0 ? samp.generator.buffer : samp.effects[lastEffectIndex].buffer, effect)
 
 			lastEffectIndex = index
 		})
 
-		waap.add(samp.effects[lastEffectIndex].buffer, c == 0 ? outputL : outputR)
+		waap.add(samp.effects[lastEffectIndex].buffer, channel)
 	}
 }
 
@@ -66,7 +60,7 @@ function renderGenerator(generator) {
 function renderEffect(input, effect) {
 	switch (effect.name) {
 		case ('bitcrush'):
-			waap.bitcrush(input, effect.buffer, effect.params.downsample)
+			input['bitcrush'](effect.buffer, effect.params, getContext().sampleRate)
 			break
 		case ('filter'):
 			waap.filter(input, effect.buffer, effect.params.frequency, effect.params.q, getContext().sampleRate)

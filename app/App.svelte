@@ -33,4 +33,5 @@
 	<Player />
 	<Meter />
 	<Trash />
+	<div id="input">test</div>
 </main>

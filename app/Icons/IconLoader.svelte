@@ -38,9 +38,9 @@
     <path fill="#fff" d="M29.255,24l4.511-4.511c0.312-0.311,0.312-0.816,0-1.128l-1.128-1.128	c-0.311-0.312-0.817-0.312-1.128,0L27,21.745l-4.511-4.511c-0.311-0.312-0.816-0.312-1.128,0l-1.128,1.128	c-0.312,0.311-0.312,0.816,0,1.128L24.745,24l-4.511,4.511c-0.312,0.311-0.312,0.816,0,1.128l1.128,1.128	c0.311,0.312,0.816,0.312,1.128,0L27,26.255l4.511,4.511c0.311,0.312,0.816,0.312,1.128,0l1.128-1.128	c0.312-0.311,0.312-0.817,0-1.128L29.255,24z"/>
 </svg>
 
-<img src="build/images/off.png" id="off">
+<img src="build/images/off.png" id="off" alt="Switch in off position">
 
-<img src="build/images/on.png" id="on">
+<img src="build/images/on.png" id="on" alt="Switch in on position">
 
 <svg viewBox="0 0 48 48" id="crop">
     <g transform="matrix(1,0,0,1,-3,0)">

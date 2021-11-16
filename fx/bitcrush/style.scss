@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind utilities;
+
+h1 {
+  color: blue;
+
+  :hover {
+    color: red;
+  }
+}

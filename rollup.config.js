@@ -7,11 +7,18 @@ import commonjs from '@rollup/plugin-commonjs'
 import livereload from 'rollup-plugin-livereload'
 import {terser} from 'rollup-plugin-terser'
 import rust from "@wasm-tool/rollup-plugin-rust"
+import multiInput from 'rollup-plugin-multi-input'
+import {base64} from 'rollup-plugin-base64'
+import postcss from '@acta/rollup-plugin-postcss'
+import sass from 'rollup-plugin-sass';
+import styles from "rollup-plugin-styles";
 
 const production = !process.env.ROLLUP_WATCH
 
-export default [{
-    input: 'src/main.js',
+export default [
+  // main app
+  {
+    input: 'app/main.js',
     output: {
       sourcemap: true,
       format: 'iife',
@@ -26,6 +33,8 @@ export default [{
         preprocess:  sveltePreprocess({
           sourceMap: !production,
           postcss: {
+            includes: ['.css'],
+            excludes: ['app'],
             plugins: [
               require("tailwindcss")
             ],
@@ -33,7 +42,7 @@ export default [{
           scss: {
             // path is relative to root
             prependData: `
-              @import 'src/Styles/main.scss';
+              @import 'app/Styles/main.scss';
             `
           }
         })
@@ -43,9 +52,9 @@ export default [{
 
       copy({
         targets: [
-          { src: '../samples/**', dest: 'public/build/samples' },
+          { src: 'samples/**', dest: 'public/build/samples' },
           { src: 'images/*', dest: 'public/build/images' },
-          { src: 'fonts/*', dest: 'public/build/fonts' }
+          { src: 'fonts/*', dest: 'public/build/fonts' },
         ]
       }),
 
@@ -57,7 +66,8 @@ export default [{
 
       rust({
         verbose: true,
-        serverPath: "/build/"
+        serverPath: "/build/",
+        inlineWasm: production
       }),
 
       // In dev mode, call `npm run start` once
@@ -75,6 +85,37 @@ export default [{
     watch: {
       clearScreen: false
     }
+  },
+  // fx
+  {
+    input: 'fx/*/main.js',
+    output: {
+      format: 'cjs',
+      dir: 'public/fx'
+    },
+    plugins: [
+        postcss({
+          plugins: [
+            require("tailwindcss")
+          ]
+        }),
+
+        multiInput({
+          relative: 'fx/'
+        }),
+
+
+
+        base64({
+          include: ["fx/**/*.html", "fx/**/*.css"]
+        }),
+
+        rust({
+          verbose: true,
+          serverPath: "/fx/",
+          inlineWasm: true
+        }),
+    ],
   }
 ]
 

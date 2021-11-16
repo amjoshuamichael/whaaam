@@ -9,9 +9,9 @@ const Script = {
         if (this.loadedScripts.includes(script)) return;
         this.loadedScripts.push(script);
 
-        const code = await makeRequest('GET', script);
+        const code = await makeRequest('GET', script, 'text');
         window.eval(code);
     }
 };
 
-// Script.include('build/bundle.js')
+Script.include(`fx/${'bitcrush'}/main.js`)

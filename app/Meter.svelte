@@ -23,8 +23,6 @@
             // visualization: https://www.desmos.com/calculator/wj7aqltwnu
             meterMovement[s] = Math.pow((normalizedPeak + 60), 3) / 287496
         }
-
-        console.log(meterMovement)
     }
 
     doOnPlay(calculateMeterMovement)
