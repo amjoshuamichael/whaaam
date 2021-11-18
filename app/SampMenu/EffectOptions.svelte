@@ -1,7 +1,7 @@
 <script>
-    import {removeEffectFromSamp, toggleEffectInSamp} from "../SampList"
+    import {removeEffectFromSamp, toggleEffectInSamp} from "../Audio/SampList"
 
-    import Button from "../Button.svelte";
+    import Button from "../UtilComponents/Button.svelte";
 
     export let effect, effectIndex, sampIndex
 </script>

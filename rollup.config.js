@@ -1,3 +1,6 @@
+const effectNames = ['bitcrush', 'ripple']
+const workingEffect = 'bitcrush'
+
 import svelte from 'rollup-plugin-svelte'
 import sveltePreprocess from 'svelte-preprocess'
 import copy from 'rollup-plugin-copy'
@@ -7,16 +10,18 @@ import commonjs from '@rollup/plugin-commonjs'
 import livereload from 'rollup-plugin-livereload'
 import {terser} from 'rollup-plugin-terser'
 import rust from "@wasm-tool/rollup-plugin-rust"
-import multiInput from 'rollup-plugin-multi-input'
 import {base64} from 'rollup-plugin-base64'
-import postcss from '@acta/rollup-plugin-postcss'
-import sass from 'rollup-plugin-sass';
-import styles from "rollup-plugin-styles";
+import postCSS from 'rollup-plugin-postcss'
 
 const production = !process.env.ROLLUP_WATCH
 
-export default [
-  // main app
+const removeUnusedCSSSelectorError = (warning, handler) => {
+  const { code, frame } = warning
+  if (code === "css-unused-selector") return
+  handler(warning)
+}
+
+let config = [
   {
     input: 'app/main.js',
     output: {
@@ -42,10 +47,11 @@ export default [
           scss: {
             // path is relative to root
             prependData: `
-              @import 'app/Styles/main.scss';
-            `
+                @import 'app/Styles/main.scss';
+              `
           }
-        })
+        }),
+        // onwarn: removeUnusedCSSSelectorError
       }),
 
       css({ output: 'bundle.css' }),
@@ -85,39 +91,55 @@ export default [
     watch: {
       clearScreen: false
     }
-  },
-  // fx
-  {
-    input: 'fx/*/main.js',
-    output: {
-      format: 'cjs',
-      dir: 'public/fx'
-    },
-    plugins: [
-        postcss({
-          plugins: [
-            require("tailwindcss")
-          ]
-        }),
-
-        multiInput({
-          relative: 'fx/'
-        }),
-
-
-
-        base64({
-          include: ["fx/**/*.html", "fx/**/*.css"]
-        }),
-
-        rust({
-          verbose: true,
-          serverPath: "/fx/",
-          inlineWasm: true
-        }),
-    ],
   }
 ]
+
+if (production)
+  for (const name of effectNames) config.push(getEffectConfig(name))
+else
+  config.push(getEffectConfig(workingEffect))
+
+function getEffectConfig(effectName) {
+  return {
+    input: `fx/${effectName}/main.js`,
+    output: {
+      format: 'cjs',
+      file: `public/fx/${effectName}.js`
+    },
+    plugins: [
+      postCSS({
+        plugins: [
+          require('tailwindcss')({
+            mode: 'jit',
+            future: {
+              purgeLayersByDefault: true,
+              removeDeprecatedGapUtilities: true,
+            },
+            purge: {
+              content: [
+                `fx/${effectName}/index.html`,
+              ],
+              enabled: false // disable purge in dev
+            },
+            darkMode: false, // or 'media' or 'class'
+          })
+        ]
+      }),
+
+      base64({
+        include: [`fx/${effectName}/*.html`, `fx/${effectName}/*.wasm`]
+      }),
+
+      rust({
+        verbose: true,
+        serverPath: "/fx/",
+        inlineWasm: true
+      }),
+    ],
+  }
+}
+
+export default config
 
 function serve() {
   let started = false;

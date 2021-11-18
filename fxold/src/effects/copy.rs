@@ -1,6 +1,5 @@
 use wasm_bindgen::prelude::*;
 use std::cmp;
-use web_sys::console;
 
 #[wasm_bindgen] #[allow(dead_code)]
 pub fn copy(ain: &mut [f32], aout: &mut [f32],

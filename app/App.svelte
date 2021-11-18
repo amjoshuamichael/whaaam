@@ -1,12 +1,12 @@
 <script>
-	import SoundSelect from './SoundSelect.svelte'
-	import SampList from './SampList.svelte'
-	import Player from './Player.svelte'
-	import Meter from './Meter.svelte'
+	import SoundSelect from './SoundSelect/SoundSelect.svelte'
+	import SampList from './Timeline/Timeline.svelte'
 	import IconLoader from './Icons/IconLoader.svelte'
-	import Trash from './Trash.svelte'
 </script>
 
+<!-- I don't know why, but if this is anything but 'global lang="postcss"', the tailwind compiler won't work. I'm-->
+<!-- pretty sure I wrote this myself, so I'm sure I knew the reason then, but I've clearly forgotten.-->
+<!-- TL;DR: DO NOT TOUCH THE LINE BELOW!-->
 <style global lang="postcss">
 	@tailwind base;
 	@tailwind utilities;
@@ -30,8 +30,4 @@
 	<IconLoader />
 	<SoundSelect />
 	<SampList />
-	<Player />
-	<Meter />
-	<Trash />
-	<div id="input">test</div>
 </main>

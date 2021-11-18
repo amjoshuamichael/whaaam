@@ -1,5 +1,5 @@
 <script>
-    import {addEffectToSamp} from '../SampList'
+    import {addEffectToSamp} from '../Audio/SampList'
     export let sampIndex
 </script>
 

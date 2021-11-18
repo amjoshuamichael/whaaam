@@ -1,7 +1,7 @@
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
-pub fn bitcrush(ain: &mut [f32], aout: &mut [f32], amount: usize, sampleRate: usize) {
+pub fn bitcrush(ain: &mut [f32], aout: &mut [f32], amount: usize, _sample_rate: usize) {
     let in_length: usize = ain.len();
     let out_length: usize = aout.len();
 

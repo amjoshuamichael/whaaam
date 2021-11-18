@@ -5,7 +5,7 @@
     onMount(loadIcons)
 </script>
 
-<style>
+<style lang="scss">
     svg, img {
         position: absolute;
         left: 0px;
